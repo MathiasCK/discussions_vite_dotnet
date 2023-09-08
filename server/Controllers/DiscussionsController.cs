@@ -28,5 +28,18 @@ public class DiscussionsController : Controller
 
         return Ok(discussions);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details(string id)
+    {
+        var discussion = await _discussionsRepository.FetchDiscussion(id);
+
+        if (id == null)
+        {
+            return NotFound("Could not fetch discussions with id: " + id);
+        }
+
+        return Ok(discussion);
+    }
 }
 
