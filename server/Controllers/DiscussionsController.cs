@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using server.DAL;
+using server.Models;
 
 namespace server.Controllers;
 
@@ -34,12 +35,32 @@ public class DiscussionsController : Controller
     {
         var discussion = await _discussionsRepository.FetchDiscussion(id);
 
-        if (id == null)
+        if (discussion == null)
         {
-            return NotFound("Could not fetch discussions with id: " + id);
+            return NotFound("Could not fetch discussion with id: " + id);
         }
 
         return Ok(discussion);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, Discussion discussion)
+    {
+        var exists = await _discussionsRepository.FetchDiscussion(id);
+
+        if (exists == null)
+        {
+            return NotFound("Could not fetch discussion with id: " + id);
+        }
+
+        bool updated = await _discussionsRepository.Update(discussion);
+
+        if (updated == false)
+        {
+            return BadRequest("Could not update discussion with id: " + id);
+        }
+
+        return Ok();
     }
 }
 
