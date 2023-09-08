@@ -75,5 +75,18 @@ public class DiscussionsController : Controller
 
         return Ok();
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var deleted = await _discussionsRepository.DeleteDiscussion(id);
+
+        if (deleted == false)
+        {
+            return BadRequest("Could not delete discussion with id: " + id);
+        }
+
+        return Ok();
+    }
 }
 
