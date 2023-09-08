@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using server.DAL;
 
 namespace server.Controllers;
 
@@ -6,17 +7,26 @@ namespace server.Controllers;
 [Route("api/[controller]")]
 public class DiscussionsController : Controller
 {
-    private readonly ILogger<DiscussionsController> _logger;
+    private readonly IDiscussionsRepository _discussionsRepository;
+    private readonly ILogger<DiscussionsRepository> _logger;
 
-    public DiscussionsController(ILogger<DiscussionsController> logger)
+    public DiscussionsController(IDiscussionsRepository discussionsRepository, ILogger<DiscussionsRepository> logger)
     {
+        _discussionsRepository = discussionsRepository;
         _logger = logger;
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return Ok("Hello world");
+        var discussions = await _discussionsRepository.FetchDiscussions();
+
+        if (discussions == null)
+        {
+            return BadRequest("Could not fetch discussions");
+        }
+
+        return Ok(discussions);
     }
 }
 
