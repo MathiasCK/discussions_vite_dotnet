@@ -43,6 +43,19 @@ public class DiscussionsController : Controller
         return Ok(discussion);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Create(Discussion discussion)
+    {
+        var created = await _discussionsRepository.CreateDiscussion(discussion, discussion.Author.Email); ;
+
+        if (created == false)
+        {
+            return BadRequest("Could not create discussion");
+        }
+
+        return Ok(discussion);
+    }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, Discussion discussion)
     {
