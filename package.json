@@ -1,0 +1,14 @@
+{
+  "name": "discussions_vite_dotnet",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:server:dev": "npm-run-all --parallel dev:server start:client",
+    "start:server:prod": "npm-run-all --parallel prod:server start:client",
+    "start:client": "cd client && yarn dev",
+    "server:dev": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Development'",
+    "server": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Production'"
+  },
+  "author": "Mathias Kolberg - Alt Legalt",
+  "license": "MIT"
+}
