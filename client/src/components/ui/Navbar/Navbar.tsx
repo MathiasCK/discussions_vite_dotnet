@@ -1,13 +1,15 @@
-import { actions } from "../../../state";
+import { useSnapshot } from "valtio";
+import { actions, state } from "../../../state";
 import { AppPage } from "../../../types";
 
 const Navbar = () => {
+  const snap = useSnapshot(state);
   return (
     <nav className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
       <div className="container-fluid">
         <a
           onClick={() => {
-            actions.setPage(AppPage.Home);
+            snap.user && actions.setPage(AppPage.Home);
           }}
           className="navbar-brand"
         >
@@ -21,7 +23,7 @@ const Navbar = () => {
             <li className="nav-item">
               <button
                 onClick={() => {
-                  actions.setPage(AppPage.Home);
+                  snap.user && actions.setPage(AppPage.Home);
                 }}
                 className="nav-link text-dark"
               >
@@ -31,7 +33,7 @@ const Navbar = () => {
             <li className="nav-item">
               <button
                 onClick={() => {
-                  actions.setPage(AppPage.Discussions);
+                  snap.user && actions.setPage(AppPage.Discussions);
                 }}
                 className="nav-link text-dark"
               >
