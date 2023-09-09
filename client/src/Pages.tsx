@@ -13,14 +13,18 @@ const routeConfig = {
 
 const Pages: React.FC = () => {
   const snap = useSnapshot(state);
+  const user = localStorage.getItem("user");
 
   useEffect(() => {
-    if (snap.user === null) {
+    if (!snap.user && !user) {
       actions.setPage(AppPage.Login);
+    } else if (!snap.user && user) {
+      actions.setUser(JSON.parse(user));
+      actions.setPage(AppPage.Home);
     } else {
       actions.setPage(AppPage.Home);
     }
-  }, [snap.user]);
+  }, [snap.user, user]);
 
   return (
     <>
