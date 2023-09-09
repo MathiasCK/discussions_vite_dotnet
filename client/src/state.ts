@@ -12,7 +12,7 @@ export type AppState = {
 };
 
 export type User = {
-  id: string;
+  id?: string;
   email: string;
 };
 
@@ -33,6 +33,7 @@ const actions = {
     state.isLoading = false;
   },
   setUser: (user: User): void => {
+    localStorage.setItem("user", JSON.stringify(user));
     state.user = user;
   },
 };

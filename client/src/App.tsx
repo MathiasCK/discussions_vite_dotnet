@@ -1,20 +1,13 @@
 import { devtools } from "valtio/utils";
-import { actions, state } from "./state";
+import { state } from "./state";
 import { useSnapshot } from "valtio";
-import React, { useEffect } from "react";
+import React from "react";
 import { Loader, Navbar } from "./components/ui";
 import Pages from "./Pages";
 
 devtools(state, { name: "app state" });
 const App = () => {
   const snap = useSnapshot(state);
-
-  useEffect(() => {
-    actions.startLoading();
-    setTimeout(() => {
-      actions.stopLoading();
-    }, 2000);
-  }, []);
 
   return (
     <React.Fragment>
