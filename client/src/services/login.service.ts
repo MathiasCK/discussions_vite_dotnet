@@ -1,6 +1,6 @@
 import { User, actions } from "../state";
 
-export const login = async (email: string) => {
+export const login = async (email: string): Promise<void> => {
   const response = await fetch("http://localhost:5000/api/login", {
     method: "POST",
     headers: {
