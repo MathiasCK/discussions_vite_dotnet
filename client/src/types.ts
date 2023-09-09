@@ -2,6 +2,7 @@ export enum AppPage {
   Login = "login",
   Home = "home",
   Discussions = "discussions",
+  Detail = "detail",
 }
 
 export type AppState = {
@@ -9,11 +10,20 @@ export type AppState = {
   isLoading: boolean;
   user: User | null;
   discussions: Array<Discussion> | [];
+  discussion: Discussion | Record<string, never>;
 };
 
 export type User = {
   id?: string;
   email: string;
+};
+
+export type Comment = {
+  id: string;
+  dicsussionId: string;
+  text: string;
+  author: User;
+  created: string;
 };
 
 export type Discussion = {
@@ -23,5 +33,5 @@ export type Discussion = {
   author: User;
   created: string;
   updated: string;
-  //comments: Array<Comment>;
+  comments: Array<Comment>;
 };

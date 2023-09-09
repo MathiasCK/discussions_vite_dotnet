@@ -1,4 +1,4 @@
-import { Login, Home, Discussions } from "./pages/index";
+import { Login, Home, Discussions, Detail } from "./pages/index";
 import { actions, state } from "./state";
 import { useSnapshot } from "valtio";
 import { CSSTransition } from "react-transition-group";
@@ -9,6 +9,7 @@ const routeConfig = {
   [AppPage.Login]: Login,
   [AppPage.Home]: Home,
   [AppPage.Discussions]: Discussions,
+  [AppPage.Detail]: Detail,
 };
 
 const Pages: React.FC = () => {

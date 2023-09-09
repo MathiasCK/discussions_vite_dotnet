@@ -6,6 +6,7 @@ const state = proxy<AppState>({
   isLoading: false,
   user: null,
   discussions: [],
+  discussion: {},
 });
 
 const actions = {
@@ -24,6 +25,9 @@ const actions = {
   },
   setDiscussions: (discussions: Array<Discussion>): void => {
     state.discussions = discussions;
+  },
+  setDiscussion: (discussion: Discussion): void => {
+    state.discussion = discussion;
   },
 };
 

@@ -1,4 +1,6 @@
-import { Discussion } from "../../types";
+import { fetchDiscussion } from "../../services/discussions.service";
+import { actions } from "../../state";
+import { AppPage, Discussion } from "../../types";
 
 interface Props {
   discussion: Discussion;
@@ -6,7 +8,13 @@ interface Props {
 
 const DiscussionCard: React.FC<Props> = ({ discussion }) => {
   return (
-    <a className="btn">
+    <a
+      onClick={async () => {
+        await fetchDiscussion(discussion.id);
+        actions.setPage(AppPage.Detail);
+      }}
+      className="btn"
+    >
       <div className="card" style={{ width: "18rem", height: "18rem" }}>
         <div
           className="card-body"
