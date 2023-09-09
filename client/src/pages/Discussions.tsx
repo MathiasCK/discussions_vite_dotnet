@@ -28,7 +28,7 @@ const Discussions: React.FC = () => {
         </div>
       </header>
       {snap.discussions.map(discussion => (
-        <DiscussionCard discussion={discussion} />
+        <DiscussionCard key={discussion.id} discussion={discussion} />
       ))}
     </React.Fragment>
   );
