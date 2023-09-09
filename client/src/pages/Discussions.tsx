@@ -27,9 +27,17 @@ const Discussions: React.FC = () => {
           </a>
         </div>
       </header>
-      {snap.discussions.map(discussion => (
-        <DiscussionCard key={discussion.id} discussion={discussion} />
-      ))}
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          flexWrap: "wrap",
+        }}
+      >
+        {snap.discussions.map(discussion => (
+          <DiscussionCard key={discussion.id} discussion={discussion} />
+        ))}
+      </section>
     </React.Fragment>
   );
 };

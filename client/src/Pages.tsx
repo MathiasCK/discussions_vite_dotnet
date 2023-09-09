@@ -32,11 +32,13 @@ const Pages: React.FC = () => {
         <CSSTransition
           key={page}
           in={page === snap.currentPage}
-          timeout={300}
+          timeout={500}
           classNames="page"
           unmountOnExit
         >
-          <Component />
+          <div className="page max-w-screen-sm mx-auto py-8 px-4 overflow-y-auto">
+            <Component />
+          </div>
         </CSSTransition>
       ))}
     </>
