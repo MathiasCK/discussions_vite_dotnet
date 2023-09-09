@@ -1,25 +1,11 @@
 import { proxy } from "valtio";
-
-export enum AppPage {
-  Login = "login",
-  Home = "home",
-}
-
-export type AppState = {
-  currentPage: AppPage;
-  isLoading: boolean;
-  user: User | null;
-};
-
-export type User = {
-  id?: string;
-  email: string;
-};
+import { AppPage, AppState, Discussion, User } from "./types";
 
 const state = proxy<AppState>({
   currentPage: AppPage.Login,
   isLoading: false,
   user: null,
+  discussions: [],
 });
 
 const actions = {
@@ -35,6 +21,9 @@ const actions = {
   setUser: (user: User): void => {
     localStorage.setItem("user", JSON.stringify(user));
     state.user = user;
+  },
+  setDiscussions: (discussions: Array<Discussion>): void => {
+    state.discussions = discussions;
   },
 };
 

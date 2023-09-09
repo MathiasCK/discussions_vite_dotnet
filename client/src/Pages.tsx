@@ -1,12 +1,14 @@
-import { Login, Home } from "./pages/index";
-import { AppPage, actions, state } from "./state";
+import { Login, Home, Discussions } from "./pages/index";
+import { actions, state } from "./state";
 import { useSnapshot } from "valtio";
 import { CSSTransition } from "react-transition-group";
 import { useEffect } from "react";
+import { AppPage } from "./types";
 
 const routeConfig = {
   [AppPage.Login]: Login,
   [AppPage.Home]: Home,
+  [AppPage.Discussions]: Discussions,
 };
 
 const Pages: React.FC = () => {

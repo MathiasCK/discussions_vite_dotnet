@@ -1,4 +1,5 @@
-import { User, actions } from "../state";
+import { actions } from "../state";
+import { User } from "../types";
 
 export const login = async (email: string): Promise<void> => {
   const response = await fetch("http://localhost:5000/api/login", {
