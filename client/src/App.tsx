@@ -2,7 +2,7 @@ import { devtools } from "valtio/utils";
 import { actions, state } from "./state";
 import { useSnapshot } from "valtio";
 import React, { useEffect } from "react";
-import { Loader } from "./components/ui";
+import { Loader, Navbar } from "./components/ui";
 import Pages from "./Pages";
 
 devtools(state, { name: "app state" });
@@ -19,7 +19,12 @@ const App = () => {
   return (
     <React.Fragment>
       <Loader isLoading={snap.isLoading} color="orange" width={120} />
-      <Pages />
+      <Navbar />
+      <div className="container">
+        <main role="main" className="pb-3">
+          <Pages />
+        </main>
+      </div>
     </React.Fragment>
   );
 };
