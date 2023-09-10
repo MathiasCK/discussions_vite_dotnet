@@ -7,6 +7,7 @@ export enum AppPage {
   UpdateDiscussion = "updateDiscussion",
   DeleteDiscussion = "deleteDiscussion",
   Logout = "logout",
+  CreateComment = "createComment",
 }
 
 export type AppState = {
@@ -23,11 +24,11 @@ export type User = {
 };
 
 export type Comment = {
-  id: string;
-  dicsussionId: string;
+  id?: string;
+  discussionId: string;
   text: string;
   author: User;
-  created: string;
+  created?: string;
 };
 
 export type Discussion = {

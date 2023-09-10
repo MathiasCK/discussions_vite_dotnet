@@ -6,3 +6,4 @@ export { default as CreateDiscussion } from "./CreateDiscussion";
 export { default as UpdateDiscussion } from "./UpdateDiscussion";
 export { default as DeleteDiscussion } from "./DeleteDiscussion";
 export { default as Logout } from "./Logout";
+export { default as CreateComment } from "./CreateComment";

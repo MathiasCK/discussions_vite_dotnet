@@ -11,16 +11,16 @@ namespace server.Models
         public virtual User ? Author { get; set; }
 		public DateTime Created { get; set; }
 
-		public Comment() { }
+        public Comment() { }
 
-		public Comment(string id, string discussionId, string text, User author, DateTime created)
-		{
-			Id = id;
-			DiscussionId = discussionId;
+        public Comment(string id, string discussionId, string text, User author, DateTime created)
+        {
+            Id = id;
+            DiscussionId = discussionId;
             Text = text;
-			Author = author;
-			Created = created;
-		}
+            Author = author;
+            Created = created;
+        }
     }
 }
 

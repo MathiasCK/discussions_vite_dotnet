@@ -1,7 +1,8 @@
 import React from "react";
 import { useSnapshot } from "valtio";
-import { state } from "../../state";
+import { actions, state } from "../../state";
 import { formatDateTime } from "../../utils/format";
+import { AppPage } from "../../types";
 
 const DiscussionComments: React.FC = () => {
   const snap = useSnapshot(state);
@@ -9,7 +10,12 @@ const DiscussionComments: React.FC = () => {
     <React.Fragment>
       <section className="mt-2 mb-2">
         <h4>Comments</h4>
-        <a className="btn btn-success">Create new comment</a>
+        <a
+          onClick={() => actions.setPage(AppPage.CreateComment)}
+          className="btn btn-success"
+        >
+          Create new comment
+        </a>
       </section>
       {snap.discussion.comments &&
         snap.discussion.comments.map(comment => (
