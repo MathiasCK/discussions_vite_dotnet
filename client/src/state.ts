@@ -23,6 +23,10 @@ const actions = {
     localStorage.setItem("user", JSON.stringify(user));
     state.user = user;
   },
+  removeUser: (): void => {
+    localStorage.removeItem("user");
+    state.user = null;
+  },
   setDiscussions: (discussions: Array<Discussion>): void => {
     state.discussions = discussions;
   },

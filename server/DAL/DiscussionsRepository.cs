@@ -1,5 +1,7 @@
 ﻿using server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Castle.Core.Logging;
 
 namespace server.DAL
 {
@@ -40,18 +42,22 @@ namespace server.DAL
             }
         }
 
-        public async Task<bool> CreateDiscussion(Discussion discussion, string sessionEmail)
+        public async Task<bool> CreateDiscussion(Discussion discussion)
         {
             try
             {
-                var existingUser = await _db.Users.FirstOrDefaultAsync(u => u.Email == sessionEmail);
+                var existingUser = await _db.Users.FirstOrDefaultAsync(u => u.Email == discussion.Author.Email);
 
                 if (existingUser == null)
                 {
-                    throw new Exception("[DiscussionsRepository]: Failed to create discussion Author with email: " + sessionEmail);
+                    throw new Exception("[DiscussionsRepository]: Failed to create discussion Author with email: " + discussion.Author.Email);
                 }
 
                 discussion.Author = existingUser;
+
+                discussion.Id = Guid.NewGuid().ToString();
+                discussion.Created = DateTime.Now;
+                discussion.Updated = DateTime.Now;
 
                 _db.Discussions.Add(discussion);
                 await _db.SaveChangesAsync();

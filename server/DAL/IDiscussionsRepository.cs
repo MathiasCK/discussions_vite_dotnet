@@ -6,7 +6,7 @@ namespace server.DAL
     {
         Task<IEnumerable<Discussion>?> FetchDiscussions();
         Task<Discussion?> FetchDiscussion(string id);
-        Task<bool> CreateDiscussion(Discussion discussion, string sessionEmail);
+        Task<bool> CreateDiscussion(Discussion discussion);
         Task<bool> Update(Discussion discussion);
         Task<bool> DeleteDiscussion(string id);
     }

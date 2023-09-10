@@ -13,8 +13,8 @@ namespace server.DAL
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            Guid uuidUser1 = Guid.NewGuid();
-            Guid uuidUser2 = Guid.NewGuid();
+            var uuidUser1 = "1c5ebc08-4f18-11ee-be56-0242ac120002";
+            var uuidUser2 = "333dfd94-4f18-11ee-be56-0242ac120002";
 
             Guid uuidDiscussion1 = Guid.NewGuid();
             Guid uuidDiscussion2 = Guid.NewGuid();
@@ -38,13 +38,13 @@ namespace server.DAL
 
             User user1 = new User
             {
-                Id = uuidUser1.ToString(),
+                Id = uuidUser1,
                 Email = "mck@mail.no"
             };
 
             User user2 = new User
             {
-                Id = uuidUser2.ToString(),
+                Id = uuidUser2,
                 Email = "john@doe.com"
             };
 

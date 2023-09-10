@@ -3,6 +3,7 @@ export enum AppPage {
   Home = "home",
   Discussions = "discussions",
   Detail = "detail",
+  CreateDiscussion = "createDiscussion",
 }
 
 export type AppState = {
@@ -27,11 +28,11 @@ export type Comment = {
 };
 
 export type Discussion = {
-  id: string;
+  id?: string;
   topic: string;
   body: string;
   author: User;
-  created: string;
-  updated: string;
-  comments: Array<Comment>;
+  created?: string;
+  updated?: string;
+  comments?: Array<Comment>;
 };

@@ -23,9 +23,11 @@ const DiscussionDetails: React.FC = () => {
           )}
         </blockquote>
       </div>
-      <div className="card-footer text-muted date">
-        {formatDateTime(snap.discussion.created)}
-      </div>
+      {snap.discussion.created && (
+        <div className="card-footer text-muted date">
+          {formatDateTime(snap.discussion.created)}
+        </div>
+      )}
     </article>
   );
 };

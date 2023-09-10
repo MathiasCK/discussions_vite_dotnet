@@ -46,7 +46,7 @@ public class DiscussionsController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Discussion discussion)
     {
-        var created = await _discussionsRepository.CreateDiscussion(discussion, discussion.Author.Email); ;
+        var created = await _discussionsRepository.CreateDiscussion(discussion); ;
 
         if (created == false)
         {
