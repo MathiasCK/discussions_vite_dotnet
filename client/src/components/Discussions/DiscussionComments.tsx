@@ -13,7 +13,11 @@ const DiscussionComments: React.FC = () => {
       </section>
       {snap.discussion.comments &&
         snap.discussion.comments.map(comment => (
-          <article className="card mb-2" style={{ width: "18rem" }}>
+          <article
+            key={comment.id}
+            className="card mb-2"
+            style={{ width: "18rem" }}
+          >
             <div className="card-body">
               <blockquote className="blockquote mb-0">
                 <div className="mb-2">
