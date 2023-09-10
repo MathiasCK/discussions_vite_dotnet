@@ -1,5 +1,5 @@
 import { proxy } from "valtio";
-import { AppPage, AppState, Discussion, User } from "./types";
+import { AppPage, AppState, Comment, Discussion, User } from "./types";
 
 const state = proxy<AppState>({
   currentPage: AppPage.Home,
@@ -7,6 +7,7 @@ const state = proxy<AppState>({
   user: null,
   discussions: [],
   discussion: {},
+  comment: {},
 });
 
 const actions = {
@@ -35,6 +36,12 @@ const actions = {
   },
   removeDiscussion: (): void => {
     state.discussion = {};
+  },
+  setComment: (comment: Comment): void => {
+    state.comment = comment;
+  },
+  removeComment: (): void => {
+    state.comment = {};
   },
 };
 

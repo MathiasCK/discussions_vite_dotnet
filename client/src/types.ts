@@ -8,6 +8,7 @@ export enum AppPage {
   DeleteDiscussion = "deleteDiscussion",
   Logout = "logout",
   CreateComment = "createComment",
+  DeleteComment = "deleteComment",
 }
 
 export type AppState = {
@@ -16,6 +17,7 @@ export type AppState = {
   user: User | null;
   discussions: Array<Discussion> | [];
   discussion: Discussion | Record<string, never>;
+  comment: Comment | Record<string, never>;
 };
 
 export type User = {

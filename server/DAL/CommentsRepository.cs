@@ -47,7 +47,7 @@ namespace server.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("[DiscussionsRepository]: Could not fetch discusstion with id: '{id}' - {e}", id, e.Message);
+                _logger.LogError("[CommentsRepository]: Could not fetch discusstion with id: '{id}' - {e}", id, e.Message);
                 return null;
             }
         }
@@ -60,7 +60,7 @@ namespace server.DAL
             }
             catch (Exception e)
             {
-                _logger.LogError("[DiscussionsRepository]: Could not fetch comment with id: '{id}' - {e}", id, e.Message);
+                _logger.LogError("[CommentsRepository]: Could not fetch comment with id: '{id}' - {e}", id, e.Message);
                 return null;
             }
         }
@@ -78,12 +78,12 @@ namespace server.DAL
 
                 _db.Comments.Remove(comment);
                 await _db.SaveChangesAsync();
-                _logger.LogInformation("[DiscussionsRepository]: Successfully deleted comment: '{comment}'", comment);
+                _logger.LogInformation("[CommentsRepository]: Successfully deleted comment: '{comment}'", comment);
                 return true;
             }
             catch (Exception e)
             {
-                _logger.LogError("[DiscussionsRepository]: Could not delete comment with id: {id} - {e}", id, e.Message);
+                _logger.LogError("[CommentsRepository]: Could not delete comment with id: {id} - {e}", id, e.Message);
                 return false;
             }
         }

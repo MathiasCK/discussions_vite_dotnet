@@ -33,7 +33,7 @@ namespace Discussions.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteComment(string id, string discussionId)
+        public async Task<IActionResult> DeleteComment(string id)
         {
             bool deleted = await _commentsRepository.DeleteComment(id);
 
@@ -42,7 +42,7 @@ namespace Discussions.Controllers
                 return BadRequest("Could not delete discussion");
             }
 
-            return RedirectToAction("Details", "Discussions", new { id = discussionId });
+            return Ok();
         }
 
     }

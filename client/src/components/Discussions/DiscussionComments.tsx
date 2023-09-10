@@ -33,7 +33,15 @@ const DiscussionComments: React.FC = () => {
                   <cite title="Source Title">{comment?.author?.email}</cite>
                 </footer>
                 {snap?.user?.id === comment?.author?.id && (
-                  <a className="btn btn-danger">Delete</a>
+                  <a
+                    onClick={() => {
+                      actions.setComment(comment);
+                      actions.setPage(AppPage.DeleteComment);
+                    }}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </a>
                 )}
               </blockquote>
             </div>
