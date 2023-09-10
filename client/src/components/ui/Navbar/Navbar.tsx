@@ -41,7 +41,14 @@ const Navbar = () => {
               </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-dark">Logout</a>
+              <button
+                onClick={() => {
+                  snap.user && actions.setPage(AppPage.Logout);
+                }}
+                className="nav-link text-dark"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>
