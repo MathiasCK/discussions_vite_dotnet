@@ -46,3 +46,23 @@ export const updateDiscussion = async (discussion: Discussion) => {
   actions.setDiscussion(updatedDiscussion);
   actions.setPage(AppPage.Detail);
 };
+
+export const deleteDiscussion = async (id: string) => {
+  const response = await fetch(`http://localhost:5000/api/discussions/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(id),
+  });
+
+  if (!response.ok) {
+    const { status } = response;
+    const message = await response.text();
+    alert(`${status} : ${message}`);
+    return;
+  }
+
+  actions.removeDiscussion();
+  actions.setPage(AppPage.Discussions);
+};

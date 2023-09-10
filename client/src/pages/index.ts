@@ -4,3 +4,4 @@ export { default as Discussions } from "./Discussions";
 export { default as Detail } from "./Detail";
 export { default as CreateDiscussion } from "./CreateDiscussion";
 export { default as UpdateDiscussion } from "./UpdateDiscussion";
+export { default as DeleteDiscussion } from "./DeleteDiscussion";

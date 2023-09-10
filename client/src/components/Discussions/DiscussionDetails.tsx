@@ -14,7 +14,7 @@ const DiscussionDetails: React.FC = () => {
             <p>{snap.discussion.body}</p>
           </div>
           <footer className="blockquote-footer">
-            <cite title="Source Title">{snap.discussion.author.email}</cite>
+            <cite title="Source Title">{snap.discussion.author?.email}</cite>
           </footer>
           {snap?.user?.id == snap.discussion?.author?.id && (
             <>
@@ -24,7 +24,12 @@ const DiscussionDetails: React.FC = () => {
               >
                 Update
               </a>
-              <a className="btn btn-danger">Delete</a>
+              <a
+                onClick={() => actions.setPage(AppPage.DeleteDiscussion)}
+                className="btn btn-danger"
+              >
+                Delete
+              </a>
             </>
           )}
         </blockquote>

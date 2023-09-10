@@ -33,6 +33,9 @@ const actions = {
   setDiscussion: (discussion: Discussion): void => {
     state.discussion = discussion;
   },
+  removeDiscussion: (): void => {
+    state.discussion = {};
+  },
 };
 
 export { state, actions };

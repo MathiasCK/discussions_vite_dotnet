@@ -38,9 +38,10 @@ const Discussions: React.FC = () => {
           flexWrap: "wrap",
         }}
       >
-        {snap.discussions.map(discussion => (
-          <DiscussionCard key={discussion.id} discussion={discussion} />
-        ))}
+        {snap.discussion &&
+          snap.discussions.map(discussion => (
+            <DiscussionCard key={discussion.id} discussion={discussion} />
+          ))}
       </section>
     </React.Fragment>
   );

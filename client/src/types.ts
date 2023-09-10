@@ -5,6 +5,7 @@ export enum AppPage {
   Detail = "detail",
   CreateDiscussion = "createDiscussion",
   UpdateDiscussion = "updateDiscussion",
+  DeleteDiscussion = "deleteDiscussion",
 }
 
 export type AppState = {
