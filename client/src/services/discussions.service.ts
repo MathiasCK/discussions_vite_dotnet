@@ -1,51 +1,33 @@
 import { actions } from "../state";
 import { AppPage, Discussion } from "../types";
+import { fetcher } from "../utils/fetcher";
 
 export const fetchDiscussions = async () => {
-  const response = await fetch("http://localhost:5000/api/discussions");
-
-  if (!response.ok) {
-    const { status } = response;
-    const message = await response.text();
-    alert(`${status} : ${message}`);
-    return;
-  }
-
-  const discussions: Array<Discussion> = await response.json();
+  const discussions: Array<Discussion> = await fetcher(
+    "http://localhost:5000/api/discussions",
+  );
   actions.setDiscussions(discussions);
 };
 
 export const fetchDiscussion = async (id: string) => {
-  const response = await fetch(`http://localhost:5000/api/discussions/${id}`);
-
-  if (!response.ok) {
-    const { status } = response;
-    const message = await response.text();
-    alert(`${status} : ${message}`);
-    return;
-  }
-
-  const discussion: Discussion = await response.json();
+  const discussion: Discussion = await fetcher(
+    `http://localhost:5000/api/discussions/${id}`,
+  );
   actions.setDiscussion(discussion);
 };
 
 export const createDiscussion = async (discussion: Discussion) => {
-  const response = await fetch(`http://localhost:5000/api/discussions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const createdDiscussion: Discussion = await fetcher(
+    `http://localhost:5000/api/discussions`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(discussion),
     },
-    body: JSON.stringify(discussion),
-  });
+  );
 
-  if (!response.ok) {
-    const { status } = response;
-    const message = await response.text();
-    alert(`${status} : ${message}`);
-    return;
-  }
-
-  const data = await response.json();
-  actions.setDiscussion(data);
+  actions.setDiscussion(createdDiscussion);
   actions.setPage(AppPage.Detail);
 };
