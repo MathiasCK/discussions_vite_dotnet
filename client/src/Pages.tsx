@@ -4,6 +4,7 @@ import {
   Discussions,
   Detail,
   CreateDiscussion,
+  UpdateDiscussion,
 } from "./pages/index";
 import { actions, state } from "./state";
 import { useSnapshot } from "valtio";
@@ -17,6 +18,7 @@ const routeConfig = {
   [AppPage.Discussions]: Discussions,
   [AppPage.Detail]: Detail,
   [AppPage.CreateDiscussion]: CreateDiscussion,
+  [AppPage.UpdateDiscussion]: UpdateDiscussion,
 };
 
 const Pages: React.FC = () => {

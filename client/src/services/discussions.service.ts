@@ -31,3 +31,18 @@ export const createDiscussion = async (discussion: Discussion) => {
   actions.setDiscussion(createdDiscussion);
   actions.setPage(AppPage.Detail);
 };
+
+export const updateDiscussion = async (discussion: Discussion) => {
+  const updatedDiscussion: Discussion = await fetcher(
+    `http://localhost:5000/api/discussions/${discussion.id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(discussion),
+    },
+  );
+  actions.setDiscussion(updatedDiscussion);
+  actions.setPage(AppPage.Detail);
+};

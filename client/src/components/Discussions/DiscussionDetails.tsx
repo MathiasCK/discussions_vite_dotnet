@@ -1,6 +1,7 @@
 import { useSnapshot } from "valtio";
-import { state } from "../../state";
+import { actions, state } from "../../state";
 import { formatDateTime } from "../../utils/format";
+import { AppPage } from "../../types";
 
 const DiscussionDetails: React.FC = () => {
   const snap = useSnapshot(state);
@@ -17,7 +18,12 @@ const DiscussionDetails: React.FC = () => {
           </footer>
           {snap?.user?.id == snap.discussion?.author?.id && (
             <>
-              <a className="btn btn-warning">Update</a>
+              <a
+                onClick={() => actions.setPage(AppPage.UpdateDiscussion)}
+                className="btn btn-warning"
+              >
+                Update
+              </a>
               <a className="btn btn-danger">Delete</a>
             </>
           )}

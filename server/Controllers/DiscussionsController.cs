@@ -57,26 +57,29 @@ public class DiscussionsController : Controller
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(string id, Discussion discussion)
+    public async Task<IActionResult> Update(Discussion discussion)
     {
-        var exists = await _discussionsRepository.FetchDiscussion(id);
+        var exists = await _discussionsRepository.FetchDiscussion(discussion.Id);
 
         if (exists == null)
         {
-            return NotFound("Could not fetch discussion with id: " + id);
+            return NotFound("Could not fetch discussion with id: " + discussion.Id);
         }
 
-        bool updated = await _discussionsRepository.Update(discussion);
+        exists.Topic = discussion.Topic;
+        exists.Body = discussion.Body;
+
+        bool updated = await _discussionsRepository.Update(exists);
 
         if (updated == false)
         {
-            return BadRequest("Could not update discussion with id: " + id);
+            return BadRequest("Could not update discussion with id: " + discussion.Id);
         }
 
-        return Ok();
+        return Ok(exists);
     }
 
-    [HttpPut("{id}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
         var deleted = await _discussionsRepository.DeleteDiscussion(id);
