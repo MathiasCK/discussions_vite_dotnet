@@ -4,6 +4,8 @@ import { AppPage, AppState, Comment, Discussion, User } from "./types";
 const state = proxy<AppState>({
   currentPage: AppPage.Home,
   isLoading: false,
+  popup: false,
+  popupText: "",
   user: null,
   discussions: [],
   discussion: {},
@@ -13,6 +15,15 @@ const state = proxy<AppState>({
 const actions = {
   setPage: (page: AppPage): void => {
     state.currentPage = page;
+  },
+  setPopup: (): void => {
+    state.popup = true;
+  },
+  removePopup: (): void => {
+    state.popup = false;
+  },
+  setPopuptext: (text: string): void => {
+    state.popupText = text;
   },
   startLoading: (): void => {
     state.isLoading = true;

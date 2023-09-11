@@ -1,6 +1,7 @@
 import { actions } from "../state";
 import { AppPage, Discussion } from "../types";
 import { fetcher } from "../utils/fetcher";
+import { displayPopup } from "../utils/popup";
 
 export const fetchDiscussions = async () => {
   const discussions: Array<Discussion> = await fetcher(
@@ -74,7 +75,7 @@ export const deleteDiscussion = async (id: string) => {
   if (!response.ok) {
     const { status } = response;
     const message = await response.text();
-    alert(`${status} : ${message}`);
+    displayPopup(`${status} : ${message}`);
     return;
   }
 

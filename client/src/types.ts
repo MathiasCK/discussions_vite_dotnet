@@ -14,6 +14,8 @@ export enum AppPage {
 export type AppState = {
   currentPage: AppPage;
   isLoading: boolean;
+  popup: boolean;
+  popupText: string;
   user: User | null;
   discussions: Array<Discussion> | [];
   discussion: Discussion | Record<string, never>;

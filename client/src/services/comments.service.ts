@@ -1,6 +1,7 @@
 import { actions } from "../state";
 import { AppPage, Comment } from "../types";
 import { fetcher } from "../utils/fetcher";
+import { displayPopup } from "../utils/popup";
 import { fetchDiscussion } from "./discussions.service";
 
 export const createComment = async (comment: Comment) => {
@@ -29,7 +30,7 @@ export const deleteComment = async (id: string, discussionId: string) => {
   if (!response.ok) {
     const { status } = response;
     const message = await response.text();
-    alert(`${status} : ${message}`);
+    displayPopup(`${status} : ${message}`);
     return;
   }
 

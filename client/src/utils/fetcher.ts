@@ -1,3 +1,5 @@
+import { displayPopup } from "./popup";
+
 export const fetcher = async (
   url: string,
   requestParams: RequestInit | undefined = {},
@@ -8,7 +10,7 @@ export const fetcher = async (
   if (!response.ok) {
     const { status } = response;
     const message = await response.text();
-    alert(`${status} : ${message}`);
+    displayPopup(`${status} : ${message}`);
     return;
   }
   return await response.json();

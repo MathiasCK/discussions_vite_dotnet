@@ -3,6 +3,7 @@ import { actions, state } from "../state";
 import { AppPage, Discussion } from "../types";
 import { useSnapshot } from "valtio";
 import { createDiscussion } from "../services/discussions.service";
+import { displayPopup } from "../utils/popup";
 
 const CreateDiscussion: React.FC = () => {
   const snap = useSnapshot(state);
@@ -14,7 +15,7 @@ const CreateDiscussion: React.FC = () => {
     e.preventDefault();
 
     if (!snap.user) {
-      alert("Session expired");
+      displayPopup("Session expired");
       actions.removeUser();
       return;
     }
