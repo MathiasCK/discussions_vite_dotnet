@@ -1,18 +1,17 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using server.DAL;
 using server.Models;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Cors;
 
 namespace server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("AllowReactApp")]
     public class LoginController : Controller
     {
 

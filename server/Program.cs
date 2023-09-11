@@ -52,14 +52,14 @@ else
     app.UseDeveloperExceptionPage();
 }
 
-app.UseCors("AllowReactApp");
-
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("AllowReactApp");
 
 app.UseEndpoints(endpoints =>
 {
