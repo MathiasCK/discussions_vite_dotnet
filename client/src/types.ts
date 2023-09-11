@@ -37,7 +37,7 @@ export type Discussion = {
   id?: string;
   topic: string;
   body: string;
-  author?: User;
+  author: User;
   created?: string;
   updated?: string;
   comments?: Array<Comment>;
