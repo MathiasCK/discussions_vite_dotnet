@@ -8,6 +8,7 @@ export const createComment = async (comment: Comment) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(comment),
   });
@@ -20,6 +21,7 @@ export const deleteComment = async (id: string, discussionId: string) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(id),
   });

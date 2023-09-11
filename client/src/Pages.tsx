@@ -15,6 +15,7 @@ import { useSnapshot } from "valtio";
 import { CSSTransition } from "react-transition-group";
 import { useEffect } from "react";
 import { AppPage } from "./types";
+import { verifyTokenPayload } from "./utils/token";
 
 const routeConfig = {
   [AppPage.Login]: Login,
@@ -37,8 +38,7 @@ const Pages: React.FC = () => {
     if (!snap.user && !user) {
       actions.setPage(AppPage.Login);
     } else if (!snap.user && user) {
-      actions.setUser(JSON.parse(user));
-      actions.setPage(AppPage.Home);
+      verifyTokenPayload(user);
     } else {
       actions.setPage(AppPage.Home);
     }

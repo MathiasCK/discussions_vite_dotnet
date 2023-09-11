@@ -26,6 +26,7 @@ const actions = {
   },
   removeUser: (): void => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     state.user = null;
   },
   setDiscussions: (discussions: Array<Discussion>): void => {

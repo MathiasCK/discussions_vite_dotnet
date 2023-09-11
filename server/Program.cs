@@ -1,7 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using server.DAL;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Gwy0hwYp2G1/EmrcV98gVOPoQFbJx+ecLigyQhsJVSw=")),
+            };
+        });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDiscussionsRepository, DiscussionsRepository>();
@@ -35,11 +52,14 @@ else
     app.UseDeveloperExceptionPage();
 }
 
+app.UseCors("AllowReactApp");
+
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("AllowReactApp");
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

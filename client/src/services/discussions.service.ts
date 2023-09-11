@@ -5,6 +5,12 @@ import { fetcher } from "../utils/fetcher";
 export const fetchDiscussions = async () => {
   const discussions: Array<Discussion> = await fetcher(
     "http://localhost:5000/api/discussions",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    },
   );
   actions.setDiscussions(discussions);
 };
@@ -12,6 +18,12 @@ export const fetchDiscussions = async () => {
 export const fetchDiscussion = async (id: string) => {
   const discussion: Discussion = await fetcher(
     `http://localhost:5000/api/discussions/${id}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    },
   );
   actions.setDiscussion(discussion);
 };
@@ -23,6 +35,7 @@ export const createDiscussion = async (discussion: Discussion) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(discussion),
     },
@@ -39,6 +52,7 @@ export const updateDiscussion = async (discussion: Discussion) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(discussion),
     },
@@ -52,6 +66,7 @@ export const deleteDiscussion = async (id: string) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(id),
   });
