@@ -34,6 +34,17 @@ Before you begin, ensure you have met the following requirements:
    yarn
    ```
 
+5. **Configure smtp server**
+
+   On the root of the server repo add a file called `mail.config.json` and add the credentials:
+
+   ```json
+      "EmailSettings": {
+         "Username": "your_gmail_account",
+         "Password": "your_gmail_app_password"
+      }
+   ```
+
 ## Running the Project
 
 ### Development Mode

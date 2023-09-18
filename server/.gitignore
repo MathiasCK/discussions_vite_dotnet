@@ -45,3 +45,5 @@ msbuild.wrn
 *.db
 *.db-shm
 *.db-wal
+
+mail.config.json
