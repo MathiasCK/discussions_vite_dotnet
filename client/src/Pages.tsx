@@ -16,8 +16,10 @@ import { CSSTransition } from "react-transition-group";
 import { useEffect } from "react";
 import { AppPage } from "./types";
 import { verifyTokenPayload } from "./utils/token";
+import { Loader } from "./components/ui";
 
 const routeConfig = {
+  [AppPage.Loader]: Loader,
   [AppPage.Login]: Login,
   [AppPage.Home]: Home,
   [AppPage.Discussions]: Discussions,

@@ -1,4 +1,5 @@
 export enum AppPage {
+  Loader = "loader",
   Login = "login",
   Home = "home",
   Discussions = "discussions",

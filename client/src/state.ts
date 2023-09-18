@@ -2,7 +2,7 @@ import { proxy } from "valtio";
 import { AppPage, AppState, Comment, Discussion, User } from "./types";
 
 const state = proxy<AppState>({
-  currentPage: AppPage.Home,
+  currentPage: AppPage.Loader,
   isLoading: false,
   popup: false,
   popupText: "",

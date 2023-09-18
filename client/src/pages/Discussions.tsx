@@ -10,11 +10,9 @@ const Discussions: React.FC = () => {
 
   useEffect(() => {
     const fetcher = async () => {
-      actions.startLoading();
       await fetchDiscussions();
     };
     fetcher();
-    actions.stopLoading();
   }, [snap.discussions]);
 
   return (
