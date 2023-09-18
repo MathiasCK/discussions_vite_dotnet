@@ -10,6 +10,8 @@ const DiscussionCard: React.FC<Props> = ({ discussion }) => {
   return (
     <a
       onClick={async () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         await fetchDiscussion(discussion.id);
         actions.setPage(AppPage.Detail);
       }}

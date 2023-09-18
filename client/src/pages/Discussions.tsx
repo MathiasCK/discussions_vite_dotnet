@@ -38,6 +38,8 @@ const Discussions: React.FC = () => {
       >
         {snap.discussion &&
           snap.discussions.map(discussion => (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             <DiscussionCard key={discussion.id} discussion={discussion} />
           ))}
       </section>

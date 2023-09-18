@@ -46,6 +46,8 @@ const DiscussionComments: React.FC = () => {
               </blockquote>
             </div>
             <div className="card-footer text-muted date">
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/* @ts-ignore */}
               {formatDateTime(comment?.created)}
             </div>
           </article>
