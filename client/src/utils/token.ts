@@ -1,21 +1,19 @@
 import { actions } from "../state";
-import { AppPage } from "../types";
 
-export const verifyTokenPayload = (user: string) => {
+export const verifyTokenPayload = (token: string) => {
   const currentTimeSeconds = Date.now() / 1000;
-  const token = localStorage.getItem("token");
 
   if (!token) {
     actions.removeUser();
-    return;
+    return false;
   }
 
   const { exp: tokenExp } = JSON.parse(atob(token.split(".")[1]));
 
   if (tokenExp < currentTimeSeconds - 10 || !token) {
     actions.removeUser();
-    return;
+    return false;
   }
-  actions.setUser(JSON.parse(user));
-  actions.setPage(AppPage.Home);
+
+  return true;
 };

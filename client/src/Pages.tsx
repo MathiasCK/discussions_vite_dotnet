@@ -43,7 +43,7 @@ const Pages: React.FC = () => {
     const token = queryParams.get("token");
     const userEmail = queryParams.get("email");
 
-    if (token && userEmail) {
+    if (token && userEmail && verifyTokenPayload(token)) {
       actions.setUser({
         email: userEmail,
       });
@@ -56,7 +56,8 @@ const Pages: React.FC = () => {
     if (!snap.user && !user) {
       actions.setPage(AppPage.Login);
     } else if (!snap.user && user) {
-      verifyTokenPayload(user);
+      actions.setUser(JSON.parse(user));
+      actions.setPage(AppPage.Home);
     } else {
       actions.setPage(AppPage.Home);
     }
