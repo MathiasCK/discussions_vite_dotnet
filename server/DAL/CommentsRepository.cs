@@ -18,11 +18,11 @@ namespace server.DAL
         {
             try
             {
-                var existingUser = await _db.Users.FirstOrDefaultAsync(u => u.Id == comment.Author.Id);
+                var existingUser = await _db.Users.FirstOrDefaultAsync(u => u.Email == comment.Author.Email);
 
                 if (existingUser == null)
                 {
-                    throw new Exception("[CommentsRepository]: Failed to set comment Author with id: " + comment.Author.Id);
+                    throw new Exception("[CommentsRepository]: Failed to set comment Author with email: " + comment.Author.Email);
                 }
 
                 comment.Author = existingUser;

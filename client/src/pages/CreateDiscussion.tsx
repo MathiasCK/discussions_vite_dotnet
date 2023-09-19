@@ -21,7 +21,9 @@ const CreateDiscussion: React.FC = () => {
     }
 
     const discussion: Discussion = {
-      author: snap.user,
+      author: {
+        email: snap.user.email,
+      },
       topic,
       body,
     };

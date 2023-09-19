@@ -32,7 +32,7 @@ const DiscussionComments: React.FC = () => {
                 <footer className="blockquote-footer">
                   <cite title="Source Title">{comment?.author?.email}</cite>
                 </footer>
-                {snap?.user?.id === comment?.author?.id && (
+                {snap?.user?.email === comment?.author?.email && (
                   <a
                     onClick={() => {
                       actions.setComment(comment);

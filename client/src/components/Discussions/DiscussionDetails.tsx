@@ -16,7 +16,7 @@ const DiscussionDetails: React.FC = () => {
           <footer className="blockquote-footer">
             <cite title="Source Title">{snap.discussion.author?.email}</cite>
           </footer>
-          {snap?.user?.id == snap.discussion?.author?.id && (
+          {snap?.user?.email == snap.discussion?.author?.email && (
             <>
               <a
                 onClick={() => actions.setPage(AppPage.UpdateDiscussion)}

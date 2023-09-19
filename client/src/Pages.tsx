@@ -42,11 +42,9 @@ const Pages: React.FC = () => {
   if (queryParams.size > 0) {
     const token = queryParams.get("token");
     const userEmail = queryParams.get("email");
-    const userId = queryParams.get("id");
 
-    if (userId && token && userEmail) {
+    if (token && userEmail) {
       actions.setUser({
-        id: userId,
         email: userEmail,
       });
       localStorage.setItem("token", token);

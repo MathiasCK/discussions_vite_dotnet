@@ -24,7 +24,9 @@ const UpdateDiscussion: React.FC = () => {
       id: snap.discussion.id,
       topic,
       body,
-      author: snap.user,
+      author: {
+        email: snap.user.email,
+      },
     };
     await updateDiscussion(discussion);
   };

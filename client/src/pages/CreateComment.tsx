@@ -15,7 +15,9 @@ const CreateComment = () => {
       const comment: Comment = {
         discussionId: snap.discussion.id,
         text,
-        author: snap.user,
+        author: {
+          email: snap.user.email,
+        },
       };
       await createComment(comment);
     }

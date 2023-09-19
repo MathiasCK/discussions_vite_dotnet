@@ -92,7 +92,7 @@ namespace server.Controllers
                                           <h2 style=""color: #333;"">Verify Your Email Address</h2>
                                           <p style=""font-size: 16px; color: #666;"">Thank you for signing up to discussions. To complete your registration, please click the button below to verify your email address:</p>
                                           <p>
-                                              <a href=""http://localhost:5173?token={token}&email={user.Email}&id={user.Id}"" style=""display: inline-block; padding: 12px 24px; background-color: #007BFF; color: #fff; text-decoration: none; font-weight: bold; border-radius: 5px;"">Verify Email</a>
+                                              <a href=""http://localhost:5173?token={token}&email={user.Email}"" style=""display: inline-block; padding: 12px 24px; background-color: #007BFF; color: #fff; text-decoration: none; font-weight: bold; border-radius: 5px;"">Verify Email</a>
                                           </p>
                                           <p style=""font-size: 14px; color: #888;"">If you did not create an account, you can safely ignore this email.</p>
                                       </td>
