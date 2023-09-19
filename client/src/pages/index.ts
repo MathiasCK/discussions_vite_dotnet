@@ -8,3 +8,4 @@ export { default as DeleteDiscussion } from "./DeleteDiscussion";
 export { default as Logout } from "./Logout";
 export { default as CreateComment } from "./CreateComment";
 export { default as DeleteComment } from "./DeleteComment";
+export { default as Verify } from "./Verify";

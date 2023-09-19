@@ -3,7 +3,6 @@ using server.DAL;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -10,6 +10,7 @@ export enum AppPage {
   Logout = "logout",
   CreateComment = "createComment",
   DeleteComment = "deleteComment",
+  Verify = "verify",
 }
 
 export type AppState = {
@@ -21,6 +22,7 @@ export type AppState = {
   discussions: Array<Discussion> | [];
   discussion: Discussion | Record<string, never>;
   comment: Comment | Record<string, never>;
+  verificationEmail: string | null;
 };
 
 export type User = {

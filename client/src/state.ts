@@ -10,6 +10,7 @@ const state = proxy<AppState>({
   discussions: [],
   discussion: {},
   comment: {},
+  verificationEmail: null,
 });
 
 const actions = {
@@ -54,6 +55,9 @@ const actions = {
   },
   removeComment: (): void => {
     state.comment = {};
+  },
+  setVerificationEmail: (data: string): void => {
+    state.verificationEmail = data;
   },
 };
 

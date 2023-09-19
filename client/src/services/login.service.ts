@@ -1,8 +1,11 @@
 import { actions } from "../state";
-import { fetcher } from "../utils/fetcher";
+import { AppPage } from "../types";
+import { displayPopup } from "../utils/popup";
 
 export const login = async (email: string): Promise<void> => {
-  const { user, token } = await fetcher("http://localhost:5000/api/login", {
+  actions.startLoading();
+
+  const response = await fetch("http://localhost:5000/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,6 +14,18 @@ export const login = async (email: string): Promise<void> => {
       email,
     }),
   });
-  localStorage.setItem("token", token);
-  actions.setUser(user);
+
+  if (!response.ok) {
+    const { status } = response;
+    const message = await response.text();
+    displayPopup(`${status} : ${message}`);
+    actions.stopLoading();
+    return;
+  }
+
+  const data = await response.text();
+  actions.stopLoading();
+
+  actions.setVerificationEmail(data);
+  actions.setPage(AppPage.Verify);
 };
