@@ -1,8 +1,9 @@
+import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Discussion } from "../types";
 import { displayPopup } from "../utils/popup";
 
-const discussionsUrl = "http://localhost:5000/api/discussions";
+const discussionsUrl = `${SERVER_URL}/api/discussions`;
 
 export const fetchDiscussions = async () => {
   try {
@@ -16,7 +17,7 @@ export const fetchDiscussions = async () => {
     if (!response.ok) {
       const { status } = response;
       const message = await response.text();
-      return displayPopup(`${status} : ${message}`);
+      throw new Error(`${status} : ${message}`);
     }
 
     const discussions: Array<Discussion> = await response.json();
@@ -39,7 +40,7 @@ export const fetchDiscussion = async (id: string) => {
     if (!response.ok) {
       const { status } = response;
       const message = await response.text();
-      return displayPopup(`${status} : ${message}`);
+      throw new Error(`${status} : ${message}`);
     }
 
     const discussion: Discussion = await response.json();
@@ -53,6 +54,7 @@ export const fetchDiscussion = async (id: string) => {
 export const createDiscussion = async (discussion: Discussion) => {
   try {
     actions.startLoading();
+
     const response = await fetch(discussionsUrl, {
       method: "POST",
       headers: {
@@ -65,18 +67,17 @@ export const createDiscussion = async (discussion: Discussion) => {
     if (!response.ok) {
       const { status } = response;
       const message = await response.text();
-      actions.stopLoading();
-      return displayPopup(`${status} : ${message}`);
+      throw new Error(`${status} : ${message}`);
     }
 
     const createdDiscussion: Discussion = await response.json();
 
-    actions.stopLoading();
     actions.setDiscussion(createdDiscussion);
     actions.setPage(AppPage.Detail);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     displayPopup(e.message);
+  } finally {
     actions.stopLoading();
   }
 };
@@ -84,6 +85,7 @@ export const createDiscussion = async (discussion: Discussion) => {
 export const updateDiscussion = async (discussion: Discussion) => {
   try {
     actions.startLoading();
+
     const response = await fetch(`${discussionsUrl}/${discussion.id}`, {
       method: "PUT",
       headers: {
@@ -96,18 +98,17 @@ export const updateDiscussion = async (discussion: Discussion) => {
     if (!response.ok) {
       const { status } = response;
       const message = await response.text();
-      actions.stopLoading();
-      return displayPopup(`${status} : ${message}`);
+      throw new Error(`${status} : ${message}`);
     }
 
     const updatedDiscussion: Discussion = await response.json();
 
-    actions.stopLoading();
     actions.setDiscussion(updatedDiscussion);
     actions.setPage(AppPage.Detail);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     displayPopup(e.message);
+  } finally {
     actions.stopLoading();
   }
 };
@@ -115,6 +116,7 @@ export const updateDiscussion = async (discussion: Discussion) => {
 export const deleteDiscussion = async (id: string) => {
   try {
     actions.startLoading();
+
     const response = await fetch(`${discussionsUrl}/${id}`, {
       method: "DELETE",
       headers: {
@@ -127,16 +129,15 @@ export const deleteDiscussion = async (id: string) => {
     if (!response.ok) {
       const { status } = response;
       const message = await response.text();
-      actions.stopLoading();
-      return displayPopup(`${status} : ${message}`);
+      throw new Error(`${status} : ${message}`);
     }
 
-    actions.stopLoading();
     actions.removeDiscussion();
     actions.setPage(AppPage.Discussions);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     displayPopup(e.message);
+  } finally {
     actions.stopLoading();
   }
 };
