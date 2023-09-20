@@ -24,7 +24,9 @@ const CreateComment = () => {
   };
   return (
     <React.Fragment>
-      <h4>Create new comment for discussion "{snap.discussion.topic}"</h4>
+      <h4 className="lead">
+        Create new comment for discussion "{snap.discussion.topic}"
+      </h4>
 
       <form onSubmit={handleSubmit} method="post">
         <div className="form-group">

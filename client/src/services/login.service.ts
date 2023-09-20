@@ -18,9 +18,8 @@ export const login = async (email: string): Promise<void> => {
   if (!response.ok) {
     const { status } = response;
     const message = await response.text();
-    displayPopup(`${status} : ${message}`);
     actions.stopLoading();
-    return;
+    return displayPopup(`${status} : ${message}`);
   }
 
   const data = await response.text();

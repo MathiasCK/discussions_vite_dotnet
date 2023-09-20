@@ -33,7 +33,7 @@ const UpdateDiscussion: React.FC = () => {
 
   return (
     <React.Fragment>
-      <h4>Update discussion: "{snap.discussion.topic}"</h4>
+      <h4 className="lead">Update discussion: "{snap.discussion.topic}"</h4>
 
       <form onSubmit={handleSubmit} method="put">
         <div className="form-group">

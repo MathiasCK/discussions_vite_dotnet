@@ -5,7 +5,7 @@ import { AppPage } from "../types";
 const Logout = () => {
   return (
     <React.Fragment>
-      <h4>Are you sure you want to logout?</h4>
+      <h4 className="lead">Are you sure you want to logout?</h4>
 
       <form>
         <button

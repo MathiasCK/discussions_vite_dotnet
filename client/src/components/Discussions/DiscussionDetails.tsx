@@ -5,6 +5,7 @@ import { AppPage } from "../../types";
 
 const DiscussionDetails: React.FC = () => {
   const snap = useSnapshot(state);
+
   return (
     <article className="card">
       <div className="card-header">{snap.discussion.topic}</div>
@@ -13,6 +14,7 @@ const DiscussionDetails: React.FC = () => {
           <div className="mb-2">
             <p>{snap.discussion.body}</p>
           </div>
+
           <footer className="blockquote-footer">
             <cite title="Source Title">{snap.discussion.author?.email}</cite>
           </footer>
@@ -37,6 +39,9 @@ const DiscussionDetails: React.FC = () => {
       {snap.discussion.created && (
         <div className="card-footer text-muted date">
           {formatDateTime(snap.discussion.created)}
+          {snap.discussion.created !== snap.discussion.updated
+            ? " (edited)"
+            : ""}
         </div>
       )}
     </article>

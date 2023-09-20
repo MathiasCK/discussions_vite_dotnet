@@ -31,7 +31,7 @@ const CreateDiscussion: React.FC = () => {
   };
   return (
     <React.Fragment>
-      <h4>Create new discussion</h4>
+      <h4 className="lead">Create new discussion</h4>
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -15,7 +15,7 @@ const DeleteComment = () => {
   };
   return (
     <React.Fragment>
-      <h4>
+      <h4 className="lead">
         Are you sure you want to delete your comment "{snap.comment.text}"
       </h4>
 

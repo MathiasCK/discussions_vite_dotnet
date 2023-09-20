@@ -17,9 +17,9 @@ const DeleteDiscussion = () => {
 
   return (
     <React.Fragment>
-      <h4>
-        Are you sure you want to delete this Discussion? With topic
-        {snap.discussion?.topic}
+      <h4 className="lead">
+        Are you sure you want to delete this Discussion? With topic "
+        {snap.discussion?.topic}"
       </h4>
 
       <form onSubmit={handleSubmit} method="delete">
