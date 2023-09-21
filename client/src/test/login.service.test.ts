@@ -1,5 +1,7 @@
 import { describe, test, expect, vi } from "vitest";
 import { login } from "../services/login.service";
+import { testUser } from "./test.types";
+import { SERVER_URL } from "../config";
 
 global.fetch = vi.fn();
 
@@ -9,7 +11,7 @@ const createFetchResponse = (data: string) => ({
 
 describe("Login Service", () => {
   test("makes a POST request to handle login", async () => {
-    const email = "mathias@mail.no";
+    const { email } = testUser;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -17,7 +19,7 @@ describe("Login Service", () => {
 
     await login(email);
 
-    expect(fetch).toHaveBeenCalledWith("http://localhost:5000/api/login", {
+    expect(fetch).toHaveBeenCalledWith(`${SERVER_URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

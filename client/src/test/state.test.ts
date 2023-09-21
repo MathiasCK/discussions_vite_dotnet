@@ -1,6 +1,7 @@
 import { expect, test, beforeEach, describe } from "vitest";
 import { actions, state } from "../state";
-import { AppPage, User, Discussion, Comment } from "../types";
+import { AppPage, Discussion, Comment } from "../types";
+import { testComment, testDiscussion, testUser } from "./test.types";
 
 const mockLocalStorage = (() => {
   let store: Record<string, string> = {};
@@ -20,22 +21,6 @@ const mockLocalStorage = (() => {
     },
   };
 })();
-
-const testUser: User = { id: "111", email: "john@doe.com" };
-
-const testDiscussion: Discussion = {
-  id: "222",
-  topic: "Test topic",
-  body: "Test body",
-  author: testUser,
-};
-
-const testComment: Comment = {
-  id: "333",
-  text: "Test comment",
-  author: testUser,
-  discussionId: "222",
-};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (global as any).localStorage = mockLocalStorage;
