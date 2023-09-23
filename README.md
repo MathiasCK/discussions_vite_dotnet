@@ -2,9 +2,9 @@
 
 Before you begin, ensure you have met the following requirements:
 
-- [Node.js](https://nodejs.org/) (vXX.XX.X) - Verify by running `node -v`
-- [.NET Core SDK](https://dotnet.microsoft.com/download) (vX.XX.X) - Verify by running `dotnet --version`
-- [Yarn](https://classic.yarnpkg.com/en/docs/install) (vX.XX.X) - Verify by running `yarn --version`
+- [Node.js](https://nodejs.org/) (v18.9.0) - Verify by running `node -v`
+- [.NET Core SDK](https://dotnet.microsoft.com/download) (v7.0.307) - Verify by running `dotnet --version`
+- [Yarn](https://classic.yarnpkg.com/en/docs/install) (v1.22.19) - Verify by running `yarn --version`
 
 ## Setup
 
