@@ -1,6 +1,7 @@
 import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage } from "../types";
+import { handleResponse } from "../utils/handlers";
 import { displayPopup } from "../utils/popup";
 
 const loginUrl = `${SERVER_URL}/api/login`;
@@ -19,11 +20,7 @@ export const login = async (email: string): Promise<void> => {
       }),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     const data = await response.text();
 

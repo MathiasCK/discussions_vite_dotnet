@@ -1,6 +1,7 @@
 import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Comment } from "../types";
+import { handleResponse } from "../utils/handlers";
 import { displayPopup } from "../utils/popup";
 import { checkLocalStorage } from "../utils/token";
 import { fetchDiscussion } from "./discussions.service";
@@ -22,11 +23,7 @@ export const createComment = async (comment: Comment) => {
       body: JSON.stringify(comment),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     await fetchDiscussion(comment.discussionId);
     actions.setPage(AppPage.Detail);
@@ -53,11 +50,7 @@ export const deleteComment = async (id: string, discussionId: string) => {
       body: JSON.stringify(id),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     await fetchDiscussion(discussionId);
     actions.removeComment();

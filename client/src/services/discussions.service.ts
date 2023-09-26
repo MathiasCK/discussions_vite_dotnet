@@ -1,6 +1,7 @@
 import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Discussion } from "../types";
+import { handleResponse } from "../utils/handlers";
 import { displayPopup } from "../utils/popup";
 import { checkLocalStorage } from "../utils/token";
 
@@ -17,11 +18,7 @@ export const fetchDiscussions = async () => {
       },
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     const discussions: Array<Discussion> = await response.json();
     actions.setDiscussions(discussions);
@@ -43,11 +40,7 @@ export const fetchDiscussion = async (id: string) => {
       },
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     const discussion: Discussion = await response.json();
     actions.setDiscussion(discussion);
@@ -73,11 +66,7 @@ export const createDiscussion = async (discussion: Discussion) => {
       body: JSON.stringify(discussion),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     const createdDiscussion: Discussion = await response.json();
 
@@ -107,11 +96,7 @@ export const updateDiscussion = async (discussion: Discussion) => {
       body: JSON.stringify(discussion),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     const updatedDiscussion: Discussion = await response.json();
 
@@ -141,11 +126,7 @@ export const deleteDiscussion = async (id: string) => {
       body: JSON.stringify(id),
     });
 
-    if (!response.ok) {
-      const { status } = response;
-      const message = await response.text();
-      throw new Error(`${status} : ${message}`);
-    }
+    handleResponse(response);
 
     actions.removeDiscussion();
     actions.setPage(AppPage.Discussions);
