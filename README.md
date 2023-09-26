@@ -36,14 +36,17 @@ Before you begin, ensure you have met the following requirements:
 
 5. **Configure smtp server**
 
-   On the root of the server repo add a file called `mail.config.json` and add the credentials:
+   On the root of the server repo add a file called `env.config.json` and add the credentials:
 
    ```json
       "EmailSettings": {
          "Username": "your_gmail_account",
          "Password": "your_gmail_app_password"
-      }
+      },
+      "SecretToken": "your_secret_base64_token"
    ```
+
+   To generate a random SecretToken run `openssl rand -base64 32` from your command line
 
 ## Running the Project
 

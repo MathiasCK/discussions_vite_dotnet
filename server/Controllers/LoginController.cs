@@ -19,10 +19,15 @@ namespace server.Controllers
     {
 
         private readonly ILoginRepository _loginRepository;
+        private readonly IConfigurationRoot _configuration;
 
         public LoginController(ILoginRepository loginRepository)
         {
             _loginRepository = loginRepository;
+            _configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("env.config.json")
+            .Build();
         }
 
         [HttpPost]
@@ -35,21 +40,18 @@ namespace server.Controllers
                 return BadRequest("There was an error fetching user " + user.Email);
             }
 
-            var configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("mail.config.json")
-            .Build();
-
-            string username = configuration["EmailSettings:Username"] ?? throw new Exception("gmail username not configured");
-            string password = configuration["EmailSettings:Password"] ?? throw new Exception("gmail password not configured");
+            string username = _configuration["EmailSettings:Username"] ?? throw new Exception("gmail username not configured in env.config.json");
+            string password = _configuration["EmailSettings:Password"] ?? throw new Exception("gmail password not configured in env.config.json");
 
 
             return SendEmail(username, password, usr);
         }
 
-        private static string GenerateJwtToken(string userId)
+        private string GenerateJwtToken(string userId)
         {
-            var secretKey = Encoding.UTF8.GetBytes("Gwy0hwYp2G1/EmrcV98gVOPoQFbJx+ecLigyQhsJVSw=");
+            var envKey = _configuration["SecretToken"] ?? throw new Exception("secret token not configured in env.config.json");
+
+            var secretKey = Encoding.UTF8.GetBytes(envKey);
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
             var tokenDescriptor = new SecurityTokenDescriptor
