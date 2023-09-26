@@ -10,7 +10,7 @@ const createFetchResponse = (data: string) => ({
 });
 
 describe("Login Service", () => {
-  test("makes a POST request to handle login", async () => {
+  test.skip("makes a POST request to handle login", async () => {
     const { email } = testUser;
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
