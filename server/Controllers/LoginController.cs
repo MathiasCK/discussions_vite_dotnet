@@ -9,12 +9,14 @@ using Microsoft.AspNetCore.Cors;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+
 
 namespace server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [EnableCors("AllowReactApp")]
+    [EnableCors("AllowViteApp")]
     public class LoginController : Controller
     {
 
@@ -66,6 +68,8 @@ namespace server.Controllers
 
         private IActionResult SendEmail(string username, string password, User user)
         {
+
+            string clientUrl = HttpContext.Request.Headers["Referer"].ToString();
             var token = GenerateJwtToken(user.Id);
 
             SmtpClient smtpClient = new("smtp.gmail.com")
@@ -94,7 +98,7 @@ namespace server.Controllers
                                           <h2 style=""color: #333;"">Verify Your Email Address</h2>
                                           <p style=""font-size: 16px; color: #666;"">Thank you for signing up to discussions. To complete your registration, please click the button below to verify your email address:</p>
                                           <p>
-                                              <a href=""http://localhost:5173?token={token}&email={user.Email}"" style=""display: inline-block; padding: 12px 24px; background-color: #007BFF; color: #fff; text-decoration: none; font-weight: bold; border-radius: 5px;"">Verify Email</a>
+                                              <a href=""{clientUrl}?token={token}&email={user.Email}"" style=""display: inline-block; padding: 12px 24px; background-color: #007BFF; color: #fff; text-decoration: none; font-weight: bold; border-radius: 5px;"">Verify Email</a>
                                           </p>
                                           <p style=""font-size: 14px; color: #888;"">If you did not create an account, you can safely ignore this email.</p>
                                       </td>

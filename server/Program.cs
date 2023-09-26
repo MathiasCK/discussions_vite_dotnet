@@ -36,10 +36,11 @@ builder.Services.AddDbContext<DB>(options =>
 });
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp", builder =>
+    options.AddPolicy("AllowViteApp", builder =>
     {
         builder
             .WithOrigins("http://localhost:5173")
+            .WithOrigins("http://localhost:3000")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -65,7 +66,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowReactApp");
+app.UseCors("AllowViteApp");
 
 app.UseEndpoints(endpoints =>
 {
