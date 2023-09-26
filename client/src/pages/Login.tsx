@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { login } from "../services/login.service";
+import { displayPopup } from "../utils/popup";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    const isValidEmail =
+      /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
+
+    if (!isValidEmail) {
+      return displayPopup(`"${email}" is not a valid email`);
+    }
+
     if (email !== null && email.length > 0) {
       await login(email);
     }
@@ -18,7 +27,7 @@ const Login: React.FC = () => {
             className="card shadow-2-strong"
             style={{ borderRadius: "1rem" }}
           >
-            <form className="card-body p-5 text-center">
+            <form onSubmit={handleSubmit} className="card-body p-5 text-center">
               <h3 className="mb-5">Sign in</h3>
               <div className="form-outline mb-4">
                 <label htmlFor="Email">Email</label>
@@ -34,7 +43,6 @@ const Login: React.FC = () => {
               <button
                 type="submit"
                 className="btn btn-primary btn-lg btn-block"
-                onClick={handleSubmit}
               >
                 Login
               </button>
