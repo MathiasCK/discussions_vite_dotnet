@@ -26,6 +26,9 @@ const actions = {
   setPopuptext: (text: string): void => {
     state.popupText = text;
   },
+  removePopupText: (): void => {
+    state.popupText = "";
+  },
   startLoading: (): void => {
     state.isLoading = true;
   },

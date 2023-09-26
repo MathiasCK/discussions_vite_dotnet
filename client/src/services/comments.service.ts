@@ -2,19 +2,22 @@ import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Comment } from "../types";
 import { displayPopup } from "../utils/popup";
+import { checkLocalStorage } from "../utils/token";
 import { fetchDiscussion } from "./discussions.service";
 
 const commentsUrl = `${SERVER_URL}/api/comments`;
 
 export const createComment = async (comment: Comment) => {
   try {
+    const token = checkLocalStorage();
+
     actions.startLoading();
 
     const response = await fetch(commentsUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(comment),
     });
@@ -37,13 +40,15 @@ export const createComment = async (comment: Comment) => {
 
 export const deleteComment = async (id: string, discussionId: string) => {
   try {
+    const token = checkLocalStorage();
+
     actions.startLoading();
 
     const response = await fetch(`${commentsUrl}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(id),
     });

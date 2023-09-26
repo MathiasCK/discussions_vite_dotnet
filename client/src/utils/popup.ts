@@ -5,5 +5,6 @@ export const displayPopup = (text: string) => {
   actions.setPopup();
   setTimeout(() => {
     actions.removePopup();
+    actions.setPopuptext("");
   }, 3000);
 };

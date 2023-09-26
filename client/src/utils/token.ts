@@ -14,3 +14,17 @@ export const verifyTokenPayload = (token: string) => {
 
   return true;
 };
+
+export const checkLocalStorage = () => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  if (!token || !user) {
+    const msg = "Session expired";
+    displayPopup(msg);
+    actions.removeUser();
+    throw new Error(msg);
+  }
+
+  return token;
+};
