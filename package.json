@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:server:dev": "npm-run-all --parallel server:dev start:client",
-    "start:server:prod": "npm-run-all --parallel server start:client",
-    "start:client": "cd client && yarn dev",
+    "start:dev": "npm-run-all --parallel server:dev client:dev",
+    "start:prod": "npm-run-all --parallel server:prod client:prod",
+    "client:dev": "cd client && yarn dev",
+    "client:prod": "cd client/dist/ && serve",
+    "client:init": "cd server && yarn",
+    "client:build": "cd client && yarn build",
     "server:dev": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Development'",
-    "server": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Production'"
+    "server:prod": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Production'",
+    "server:init": "cd server && dotnet restore",
+    "server:build": "cd server && dotnet build"
   },
   "author": "Mathias Kolberg - Alt Legalt",
   "license": "MIT",

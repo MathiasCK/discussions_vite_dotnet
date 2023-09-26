@@ -1,12 +1,12 @@
-## Prerequisites
+## Prerequisites 📋
 
 Before you begin, ensure you have met the following requirements:
 
-- [Node.js](https://nodejs.org/) (v18.9.0) - Verify by running `node -v`
-- [.NET Core SDK](https://dotnet.microsoft.com/download) (v7.0.307) - Verify by running `dotnet --version`
-- [Yarn](https://classic.yarnpkg.com/en/docs/install) (v1.22.19) - Verify by running `yarn --version`
+- [Serve](https://www.npmjs.com/package/serve) (v14.2.1) - Verify by running `serve -v` ✔️
+- [.NET Core SDK](https://dotnet.microsoft.com/download) (v7.0.307) - Verify by running `dotnet --version` ✔️
+- [Yarn](https://classic.yarnpkg.com/en/docs/install) (v1.22.19) - Verify by running `yarn --version` ✔️
 
-## Setup
+## Setup ⚙️
 
 1. **Clone the repository**:
 
@@ -23,15 +23,13 @@ Before you begin, ensure you have met the following requirements:
 3. **Install server dependencies**
 
    ```bash
-   cd server
-   dotnet restore
+   yarn server:init
    ```
 
 4. **Install client dependencies**
 
    ```bash
-   cd ../client
-   yarn
+   yarn client:init
    ```
 
 5. **Configure smtp server**
@@ -48,38 +46,39 @@ Before you begin, ensure you have met the following requirements:
 
    To generate a random SecretToken run `openssl rand -base64 32` from your command line
 
-## Running the Project
+## Running the Project 🚀
 
-### Development Mode
+### Development Mode 🔧
 
 To run the project in development mode using the custom scripts:
 
 1. **Start both the server and client**:
 
    ```bash
-   yarn start:server:dev
+   yarn start:dev
    ```
 
 The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:5173.
 
-### Production Mode
+### Production Mode 🌐
 
 To run the project in production mode using the custom scripts:
 
 1. **Build the client**:
 
    ```bash
-   cd client
-   yarn build
+   yarn client:build
    ```
 
 2. **Start both the server and client**:
 
    ```bash
-   yarn start:server:prod
+   yarn start:prod
    ```
 
-## Contributing
+The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:3000.
+
+## Contributing 🤝
 
 If you'd like to contribute to this project, please follow these guidelines:
 
@@ -89,6 +88,6 @@ If you'd like to contribute to this project, please follow these guidelines:
 - Push your changes to your fork.
 - Create a pull request to the main branch of the original repository.
 
-## License
+## License 📄
 
 This project is licensed under the MIT License.
