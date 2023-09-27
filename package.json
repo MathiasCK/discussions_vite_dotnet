@@ -7,14 +7,14 @@
     "start:prod": "npm-run-all --parallel server:prod client:prod",
     "client:dev": "cd client && yarn dev",
     "client:prod": "cd client/dist/ && serve",
-    "client:init": "cd server && yarn",
+    "client:init": "cd client && yarn",
     "client:build": "cd client && yarn build",
-    "server:dev": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Development'",
-    "server:prod": "cd server && dotnet run --urls 'http://localhost:5000' --environment 'Production'",
+    "server:dev": "cd server && dotnet run --urls 'http://localhost:5000'",
+    "server:prod": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll --urls 'http://localhost:5000'",
     "server:init": "cd server && dotnet restore",
     "server:build": "cd server && dotnet build"
   },
-  "author": "Mathias Kolberg - Alt Legalt",
+  "author": "Mathias Kolberg - Legalit",
   "license": "MIT",
   "dependencies": {
     "npm-run-all": "^4.1.5"
