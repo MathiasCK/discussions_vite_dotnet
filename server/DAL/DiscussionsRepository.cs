@@ -53,11 +53,12 @@ namespace server.DAL
                     throw new Exception("[DiscussionsRepository]: Failed to create discussion Author with email: " + discussion.Author.Email);
                 }
 
-                discussion.Author = existingUser;
+                var currentTime = DateTime.Now;
 
+                discussion.Author = existingUser;
                 discussion.Id = Guid.NewGuid().ToString();
-                discussion.Created = DateTime.Now;
-                discussion.Updated = DateTime.Now;
+                discussion.Created = currentTime;
+                discussion.Updated = currentTime;
 
                 _db.Discussions.Add(discussion);
                 await _db.SaveChangesAsync();
