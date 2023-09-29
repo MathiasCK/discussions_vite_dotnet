@@ -2,7 +2,7 @@ import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage } from "../types";
 import { handleResponse } from "../utils/handlers";
-import { displayPopup } from "../utils/popup";
+import { MessageToast } from "../utils/toast";
 
 const loginUrl = `${SERVER_URL}/api/login`;
 
@@ -28,7 +28,7 @@ export const login = async (email: string): Promise<void> => {
     actions.setPage(AppPage.Verify);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }

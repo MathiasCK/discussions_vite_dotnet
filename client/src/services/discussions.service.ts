@@ -2,7 +2,7 @@ import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Discussion } from "../types";
 import { handleResponse } from "../utils/handlers";
-import { displayPopup } from "../utils/popup";
+import { MessageToast } from "../utils/toast";
 import { checkLocalStorage } from "../utils/token";
 
 const discussionsUrl = `${SERVER_URL}/api/discussions`;
@@ -25,7 +25,7 @@ export const fetchDiscussions = async () => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   }
 };
 
@@ -47,7 +47,7 @@ export const fetchDiscussion = async (id: string) => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   }
 };
 
@@ -72,10 +72,10 @@ export const createDiscussion = async (discussion: Discussion) => {
 
     actions.setDiscussion(createdDiscussion);
     actions.setPage(AppPage.Detail);
-
+    MessageToast.success("Discussion creation successful");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }
@@ -102,10 +102,10 @@ export const updateDiscussion = async (discussion: Discussion) => {
 
     actions.setDiscussion(updatedDiscussion);
     actions.setPage(AppPage.Detail);
-
+    MessageToast.show("Discussion updated");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }
@@ -130,10 +130,10 @@ export const deleteDiscussion = async (id: string) => {
 
     actions.removeDiscussion();
     actions.setPage(AppPage.Discussions);
-
+    MessageToast.show("Discussion deleted");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }

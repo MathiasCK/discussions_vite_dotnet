@@ -2,7 +2,7 @@ import { SERVER_URL } from "../config";
 import { actions } from "../state";
 import { AppPage, Comment } from "../types";
 import { handleResponse } from "../utils/handlers";
-import { displayPopup } from "../utils/popup";
+import { MessageToast } from "../utils/toast";
 import { checkLocalStorage } from "../utils/token";
 import { fetchDiscussion } from "./discussions.service";
 
@@ -27,9 +27,10 @@ export const createComment = async (comment: Comment) => {
 
     await fetchDiscussion(comment.discussionId);
     actions.setPage(AppPage.Detail);
+    MessageToast.success("Comment creation successful");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }
@@ -55,9 +56,10 @@ export const deleteComment = async (id: string, discussionId: string) => {
     await fetchDiscussion(discussionId);
     actions.removeComment();
     actions.setPage(AppPage.Detail);
+    MessageToast.show("Comment deleted");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    displayPopup(e.message);
+    MessageToast.error(e.message);
   } finally {
     actions.stopLoading();
   }

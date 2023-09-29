@@ -9,8 +9,8 @@ const App = () => (
   <React.Fragment>
     <Loader />
     <Navbar />
-    <Popup />
     <div className="container">
+      <Popup />
       <main role="main" className="pb-3">
         <Pages />
       </main>

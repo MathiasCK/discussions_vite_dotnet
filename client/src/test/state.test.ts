@@ -1,6 +1,6 @@
 import { expect, test, beforeEach, describe } from "vitest";
 import { actions, state } from "../state";
-import { AppPage, Discussion, Comment } from "../types";
+import { AppPage, Discussion, Comment, ToastTypes } from "../types";
 import { testComment, testDiscussion, testUser } from "./test.types";
 
 const mockLocalStorage = (() => {
@@ -39,19 +39,19 @@ describe("State actions", () => {
   });
 
   test("should set the popup", () => {
-    actions.setPopup();
-    expect(state.popup).toBe(true);
+    actions.messageToast("Hello World!", ToastTypes.primary);
+    expect(state.toast).toBe(true);
   });
 
   test("should remove the popup", () => {
-    actions.setPopup();
-    actions.removePopup();
-    expect(state.popup).toBe(false);
+    actions.messageToast("Test", ToastTypes.primary);
+    actions.removeToast();
+    expect(state.toast).toBe(false);
   });
 
   test("should set the popup text", () => {
-    actions.setPopuptext("Hello, World!");
-    expect(state.popupText).toBe("Hello, World!");
+    actions.messageToast("Hello World!", ToastTypes.primary);
+    expect(state.toastText).toBe("Hello World!");
   });
 
   test("should start loading", () => {

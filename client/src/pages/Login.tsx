@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { login } from "../services/login.service";
-import { displayPopup } from "../utils/popup";
+import { MessageToast } from "../utils/toast";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
       /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
 
     if (!isValidEmail) {
-      return displayPopup(`"${email}" is not a valid email`);
+      return MessageToast.error(`"${email}" is not a valid email`);
     }
 
     if (email !== null && email.length > 0) {
