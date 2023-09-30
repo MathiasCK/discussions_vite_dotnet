@@ -42,7 +42,11 @@ const CreateComment = () => {
           />
         </div>
         <div className="mt-2">
-          <button type="submit" className="btn btn-success">
+          <button
+            type="submit"
+            className="btn btn-success"
+            style={{ marginRight: "5px" }}
+          >
             Create
           </button>
           <a

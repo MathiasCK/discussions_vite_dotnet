@@ -20,7 +20,11 @@ const DeleteComment = () => {
       </h4>
 
       <form onSubmit={handleSubmit} method="post">
-        <button type="submit" className="btn btn-danger">
+        <button
+          type="submit"
+          className="btn btn-danger"
+          style={{ marginRight: "5px" }}
+        >
           Yes, delete
         </button>
         <a

@@ -23,6 +23,7 @@ const DiscussionDetails: React.FC = () => {
               <a
                 onClick={() => actions.setPage(AppPage.UpdateDiscussion)}
                 className="btn btn-warning"
+                style={{ marginRight: "5px" }}
               >
                 Update
               </a>

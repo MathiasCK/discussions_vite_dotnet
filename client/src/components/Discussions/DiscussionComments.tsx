@@ -9,7 +9,7 @@ const DiscussionComments: React.FC = () => {
   return (
     <React.Fragment>
       <section className="mt-2 mb-2">
-        <h4>Comments</h4>
+        <h4 className="lead">Comments</h4>
         <a
           onClick={() => actions.setPage(AppPage.CreateComment)}
           className="btn btn-success"

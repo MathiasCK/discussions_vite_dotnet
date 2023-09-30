@@ -23,7 +23,11 @@ const DeleteDiscussion = () => {
       </h4>
 
       <form onSubmit={handleSubmit} method="delete">
-        <button type="submit" className="btn btn-danger">
+        <button
+          type="submit"
+          className="btn btn-danger"
+          style={{ marginRight: "5px" }}
+        >
           Yes, delete
         </button>
         <a

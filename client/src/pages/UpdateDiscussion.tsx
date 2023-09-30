@@ -61,7 +61,11 @@ const UpdateDiscussion: React.FC = () => {
           />
         </div>
         <div className="mt-2">
-          <button type="submit" className="btn btn-warning">
+          <button
+            type="submit"
+            className="btn btn-warning"
+            style={{ marginRight: "5px" }}
+          >
             Update
           </button>
           <a

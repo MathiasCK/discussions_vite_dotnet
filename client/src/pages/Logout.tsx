@@ -12,6 +12,7 @@ const Logout = () => {
           onClick={() => actions.removeUser()}
           type="submit"
           className="btn btn-danger"
+          style={{ marginRight: "5px" }}
         >
           Yes, logout
         </button>
