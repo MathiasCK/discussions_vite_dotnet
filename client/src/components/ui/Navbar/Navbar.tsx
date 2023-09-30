@@ -4,6 +4,10 @@ import { AppPage } from "../../../types";
 
 const Navbar = () => {
   const snap = useSnapshot(state);
+
+  const toggleMobileMenu = () =>
+    document.querySelector(".navbar-collapse")?.classList.toggle("show");
+
   return (
     <nav className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
       <div className="container-fluid">
@@ -15,7 +19,11 @@ const Navbar = () => {
         >
           Discussions
         </a>
-        <button className="navbar-toggler" type="button">
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={toggleMobileMenu}
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="navbar-collapse collapse d-sm-inline-flex justify-content-between">
