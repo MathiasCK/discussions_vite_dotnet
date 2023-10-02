@@ -43,16 +43,27 @@ Before you get started, make sure you have the following requirements in place:
    npm run server:init
    ```
 
-5. **Configure smtp server**
+5. **Configure client proxy**
+
+   On the root of the client repo add a file called `.env` and add the credentials:
+
+   ```bash
+   VITE_SERVER_URL=http://localhost:5250
+   ```
+
+6. **Configure smtp server**
 
    On the root of the server repo add a file called `env.config.json` and add the credentials:
 
    ```json
-      "EmailSettings": {
-         "Username": "your_gmail_account",
-         "Password": "your_gmail_app_password"
-      },
-      "SecretToken": "your_secret_base64_token"
+   {
+     "EmailSettings": {
+       "Username": "your_gmail_account",
+       "Password": "your_gmail_app_password"
+     },
+     "SecretToken": "your_secret_base64_token",
+     "Client_URL": "http://localhost:3000"
+   }
    ```
 
    To generate a random SecretToken run `openssl rand -base64 32` from your command line
@@ -67,7 +78,7 @@ Before you get started, make sure you have the following requirements in place:
    npm run start:dev
    ```
 
-The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:5173.
+The server will be accessible at http://localhost:5250, and the client will be running on http://localhost:5173.
 
 ### Production Mode 🌐
 
@@ -83,7 +94,7 @@ The server will be accessible at http://localhost:5000, and the client will be r
    npm start
    ```
 
-The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:3000.
+The server will be accessible at http://localhost:5250, and the client will be running on http://localhost:3000.
 
 ## Usage 📖
 

@@ -10,8 +10,8 @@
     "client:dev": "npm run dev --workspace=client",
     "client:serve": "npm run serve --workspace=client",
     "client:build": "npm run build --workspace=client",
-    "server:dev": "cd server && dotnet run --urls 'http://localhost:5000'",
-    "server": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll --urls 'http://localhost:5000'",
+    "server:dev": "cd server && dotnet run",
+    "server": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll",
     "server:build": "cd server && dotnet build",
     "server:init": "cd server && dotnet restore"
   },

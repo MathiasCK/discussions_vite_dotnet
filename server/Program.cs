@@ -12,6 +12,7 @@ var configuration = new ConfigurationBuilder()
         .Build();
 
 var secretToken = configuration["SecretToken"] ?? throw new Exception("secret token not configured in env.config.json");
+var viteApp = configuration["Client_URL"] ?? throw new Exception("Client url not configured in env.config.json");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
@@ -39,8 +40,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowViteApp", builder =>
     {
         builder
-            .WithOrigins("http://localhost:5173")
-            .WithOrigins("http://localhost:3000")
+            .WithOrigins(viteApp)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
