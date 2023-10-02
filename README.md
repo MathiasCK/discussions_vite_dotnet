@@ -14,9 +14,8 @@ Welcome to the Discussions App, a platform that allows users to engage in meanin
 
 Before you get started, make sure you have the following requirements in place:
 
-- [Serve](https://www.npmjs.com/package/serve) (v14.2.1) - Verify by running `serve --version` ✔️
 - [.NET Core SDK](https://dotnet.microsoft.com/download) (v7.0.307) - Verify by running `dotnet --version` ✔️
-- [Yarn](https://classic.yarnpkg.com/en/docs/install) (v1.22.19) - Verify by running `yarn --version` ✔️
+- [npm](https://www.npmjs.com/) (v9.8.1) - Verify by running `npm --version` ✔️
 
 ## Setup ⚙️
 
@@ -32,25 +31,19 @@ Before you get started, make sure you have the following requirements in place:
    cd discussions_vite_dotnet
    ```
 
-3. **Install root dependencies**
+3. **Install root & client dependencies**
 
    ```bash
-   yarn
+   npm install
    ```
 
 4. **Install server dependencies**
 
    ```bash
-   yarn server:init
+   npm run server:init
    ```
 
-5. **Install client dependencies**
-
-   ```bash
-   yarn client:init
-   ```
-
-6. **Configure smtp server**
+5. **Configure smtp server**
 
    On the root of the server repo add a file called `env.config.json` and add the credentials:
 
@@ -71,7 +64,7 @@ Before you get started, make sure you have the following requirements in place:
 1. **Start both the server and client**:
 
    ```bash
-   yarn start:dev
+   npm run start:dev
    ```
 
 The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:5173.
@@ -81,13 +74,13 @@ The server will be accessible at http://localhost:5000, and the client will be r
 1. **Build the client**:
 
    ```bash
-   yarn client:build
+   npm run client:build
    ```
 
 2. **Start both the server and client**:
 
    ```bash
-   yarn start:prod
+   npm start
    ```
 
 The server will be accessible at http://localhost:5000, and the client will be running on http://localhost:3000.

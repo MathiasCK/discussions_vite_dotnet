@@ -1,18 +1,19 @@
 {
   "name": "discussions_vite_dotnet",
   "version": "1.0.0",
-  "description": "",
+  "workspaces": [
+    "client"
+  ],
   "scripts": {
     "start:dev": "npm-run-all --parallel server:dev client:dev",
-    "start:prod": "npm-run-all --parallel server:prod client:prod",
-    "client:dev": "cd client && yarn dev",
-    "client:prod": "cd client/dist/ && serve",
-    "client:init": "cd client && yarn",
-    "client:build": "cd client && yarn build",
+    "start": "npm-run-all --parallel server client:serve",
+    "client:dev": "npm run dev --workspace=client",
+    "client:serve": "npm run serve --workspace=client",
+    "client:build": "npm run build --workspace=client",
     "server:dev": "cd server && dotnet run --urls 'http://localhost:5000'",
-    "server:prod": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll --urls 'http://localhost:5000'",
-    "server:init": "cd server && dotnet restore",
-    "server:build": "cd server && dotnet build"
+    "server": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll --urls 'http://localhost:5000'",
+    "server:build": "cd server && dotnet build",
+    "server:init": "cd server && dotnet restore"
   },
   "author": "Mathias Kolberg - Legalit",
   "license": "MIT",
