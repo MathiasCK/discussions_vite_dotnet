@@ -1,14 +1,18 @@
-// vite.config.js
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
-export default defineConfig({
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:5000",
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ""),
+export default ({ mode }) => {
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+  return defineConfig({
+    server: {
+      port: 3000,
+      proxy: {
+        "/api": {
+          target: process.env.VITE_SERVER_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ""),
+        },
       },
     },
-  },
-});
+  });
+};
