@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import { actions, state } from "../state";
 import { AppPage, Discussion } from "../types";
-import { updateDiscussion } from "../services/discussions.service";
 import { MessageToast } from "../utils/toast";
 
 const UpdateDiscussion: React.FC = () => {
@@ -28,6 +27,10 @@ const UpdateDiscussion: React.FC = () => {
         email: snap.user.email,
       },
     };
+
+    const { updateDiscussion } = await import(
+      "../services/discussions.service"
+    );
     await updateDiscussion(discussion);
   };
 

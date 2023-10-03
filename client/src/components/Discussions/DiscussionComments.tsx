@@ -22,7 +22,7 @@ const DiscussionComments: React.FC = () => {
           <article
             key={comment.id}
             className="card mb-2"
-            style={{ width: "18rem" }}
+            style={{ maxWidth: "18rem" }}
           >
             <div className="card-body">
               <blockquote className="blockquote mb-0">

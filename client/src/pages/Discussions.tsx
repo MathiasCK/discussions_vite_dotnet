@@ -1,6 +1,5 @@
 import { useSnapshot } from "valtio";
 import { actions, state } from "../state";
-import { fetchDiscussions } from "../services/discussions.service";
 import React, { useEffect } from "react";
 import { DiscussionCard } from "../components/Discussions";
 import { AppPage } from "../types";
@@ -10,6 +9,9 @@ const Discussions: React.FC = () => {
 
   useEffect(() => {
     const fetcher = async () => {
+      const { fetchDiscussions } = await import(
+        "../services/discussions.service"
+      );
       await fetchDiscussions();
     };
     fetcher();

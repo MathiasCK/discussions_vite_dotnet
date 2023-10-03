@@ -2,7 +2,6 @@ import React from "react";
 import { useSnapshot } from "valtio";
 import { actions, state } from "../state";
 import { AppPage } from "../types";
-import { deleteComment } from "../services/comments.service";
 
 const DeleteComment = () => {
   const snap = useSnapshot(state);
@@ -10,6 +9,7 @@ const DeleteComment = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (snap.comment.id) {
+      const { deleteComment } = await import("../services/comments.service");
       await deleteComment(snap.comment.id, snap.comment.discussionId);
     }
   };

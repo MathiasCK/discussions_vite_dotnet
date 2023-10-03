@@ -2,7 +2,6 @@ import React from "react";
 import { useSnapshot } from "valtio";
 import { actions, state } from "../state";
 import { AppPage } from "../types";
-import { deleteDiscussion } from "../services/discussions.service";
 
 const DeleteDiscussion = () => {
   const snap = useSnapshot(state);
@@ -11,6 +10,9 @@ const DeleteDiscussion = () => {
     e.preventDefault();
 
     if (snap.discussion?.id) {
+      const { deleteDiscussion } = await import(
+        "../services/discussions.service"
+      );
       await deleteDiscussion(snap.discussion.id);
     }
   };

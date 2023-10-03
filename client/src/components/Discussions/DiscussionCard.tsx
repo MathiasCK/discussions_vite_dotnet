@@ -1,5 +1,3 @@
-import { fetchDiscussion } from "../../services/discussions.service";
-import { actions } from "../../state";
 import { AppPage, Discussion } from "../../types";
 
 interface Props {
@@ -10,10 +8,15 @@ const DiscussionCard: React.FC<Props> = ({ discussion }) => {
   return (
     <a
       onClick={async () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        await fetchDiscussion(discussion.id);
-        actions.setPage(AppPage.Detail);
+        if (discussion.id) {
+          const { fetchDiscussion } = await import(
+            "../../services/discussions.service"
+          );
+          const { actions } = await import("../../state");
+
+          await fetchDiscussion(discussion.id);
+          actions.setPage(AppPage.Detail);
+        }
       }}
       className="btn"
     >

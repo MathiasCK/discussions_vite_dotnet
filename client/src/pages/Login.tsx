@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../services/login.service";
+
 import { MessageToast } from "../utils/toast";
 
 const Login: React.FC = () => {
@@ -16,6 +16,7 @@ const Login: React.FC = () => {
     }
 
     if (email !== null && email.length > 0) {
+      const { login } = await import("../services/login.service");
       await login(email);
     }
   };

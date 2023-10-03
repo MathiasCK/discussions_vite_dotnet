@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { actions, state } from "../state";
 import { AppPage, Discussion } from "../types";
 import { useSnapshot } from "valtio";
-import { createDiscussion } from "../services/discussions.service";
 import { MessageToast } from "../utils/toast";
 
 const CreateDiscussion: React.FC = () => {
@@ -27,6 +26,10 @@ const CreateDiscussion: React.FC = () => {
       topic,
       body,
     };
+
+    const { createDiscussion } = await import(
+      "../services/discussions.service"
+    );
     await createDiscussion(discussion);
   };
   return (

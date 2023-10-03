@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { actions, state } from "../state";
 import { AppPage, Comment } from "../types";
 import { useSnapshot } from "valtio";
-import { createComment } from "../services/comments.service";
 
 const CreateComment = () => {
   const snap = useSnapshot(state);
@@ -19,6 +18,8 @@ const CreateComment = () => {
           email: snap.user.email,
         },
       };
+
+      const { createComment } = await import("../services/comments.service");
       await createComment(comment);
     }
   };
