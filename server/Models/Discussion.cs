@@ -8,7 +8,7 @@ namespace server.Models
 		public string Id { get; set; } = string.Empty;
         [StringLength(100)]
         public string Topic { get; set; } = string.Empty;
-        [StringLength(200)]
+        [StringLength(1000)]
         public string Body { get; set; } = string.Empty;
         public virtual User ? Author { get; set; }
         public DateTime ? Created { get; set; }
