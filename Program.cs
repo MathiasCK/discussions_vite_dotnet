@@ -3,20 +3,21 @@ using server.DAL;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
+/* Initialize enviroment variables */
+var (keyVaultName, clientSecret, tenantId, clientId) = Utils.GenerateConnectionString();
+var vault = new SecretClient(new Uri($"https://{keyVaultName}.vault.azure.net/"), new ClientSecretCredential(tenantId, clientId, clientSecret));
+
+/* Create app builder */
 var builder = WebApplication.CreateBuilder(args);
-
-var configuration = new ConfigurationBuilder()
-        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-        .AddJsonFile("env.config.json")
-        .Build();
-
-var secretToken = configuration["SecretToken"] ?? throw new Exception("secret token not configured in env.config.json");
-var viteApp = configuration["Client_URL"] ?? throw new Exception("Client url not configured in env.config.json");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
         {
+            string secretToken = vault.GetSecret("SecretToken").Value.Value;
+
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = false,
@@ -27,20 +28,29 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             };
         });
 
+builder.Services.AddTransient<IKeyVaultService>(provider =>
+{
+    IConfiguration config = provider.GetRequiredService<IConfiguration>();
+
+    return new KeyVaultService(keyVaultName, tenantId, clientId, clientSecret);
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDiscussionsRepository, DiscussionsRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+
 builder.Services.AddDbContext<DB>(options =>
 {
     options.UseSqlite(builder.Configuration["ConnectionStrings:DbConnection"]);
 });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowViteApp", builder =>
     {
         builder
-            .WithOrigins(viteApp)
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -50,20 +60,21 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-
     app.UseHsts();
 }
 else
 {
-    DbInit.Seed(app);
     app.UseDeveloperExceptionPage();
 }
+
+DbInit.Seed(app);
 
 app.UseHttpsRedirection();
 
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.UseCors("AllowViteApp");

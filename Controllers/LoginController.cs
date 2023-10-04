@@ -8,8 +8,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Cors;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Http;
-using Microsoft.AspNetCore.Http;
 
 
 namespace server.Controllers
@@ -21,15 +19,12 @@ namespace server.Controllers
     {
 
         private readonly ILoginRepository _loginRepository;
-        private readonly IConfigurationRoot _configuration;
+        private readonly IKeyVaultService _keyVaultService;
 
-        public LoginController(ILoginRepository loginRepository)
+        public LoginController(ILoginRepository loginRepository, IKeyVaultService keyVaultService)
         {
             _loginRepository = loginRepository;
-            _configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("env.config.json")
-            .Build();
+            _keyVaultService = keyVaultService;
         }
 
         [HttpPost]
@@ -42,17 +37,15 @@ namespace server.Controllers
                 return BadRequest("There was an error fetching user " + user.Email);
             }
 
-            string username = _configuration["EmailSettings:Username"] ?? throw new Exception("gmail username not configured in env.config.json");
-            string password = _configuration["EmailSettings:Password"] ?? throw new Exception("gmail password not configured in env.config.json");
-
+            string username = _keyVaultService.GetSecretValue("EmailSettings-Username");
+            string password = _keyVaultService.GetSecretValue("EmailSettings-Password");
 
             return SendEmail(username, password, usr);
         }
 
         private string GenerateJwtToken(string userId)
         {
-            var envKey = _configuration["SecretToken"] ?? throw new Exception("secret token not configured in env.config.json");
-
+            var envKey = _keyVaultService.GetSecretValue("SecretToken");
             var secretKey = Encoding.UTF8.GetBytes(envKey);
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 

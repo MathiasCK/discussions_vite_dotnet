@@ -51,22 +51,17 @@ Before you get started, make sure you have the following requirements in place:
    VITE_SERVER_URL=http://localhost:5250
    ```
 
-6. **Configure smtp server**
+6. **Configure env variables for server**
 
-   On the root of the server repo add a file called `env.config.json` and add the credentials:
+   Using the command line open `~/.zshrc` or `~/.bashrc` (depending on what shell you are using)
 
-   ```json
-   {
-     "EmailSettings": {
-       "Username": "your_gmail_account",
-       "Password": "your_gmail_app_password"
-     },
-     "SecretToken": "your_secret_base64_token",
-     "Client_URL": "http://localhost:3000"
-   }
+   Add the following variable:
+
+   ```bash
+   export DISCUSSIONS_VAULT_CONNECTION="AZURE_KEY_VAULT_NAME:AZURE_CLIENT_SECRET:AZURE_TENANT_ID:AZURE_CLIENT_ID"
    ```
 
-   To generate a random SecretToken run `openssl rand -base64 32` from your command line
+   Replace with your values and make sure to separate them by ":"
 
 ## Running the Project 🚀
 
