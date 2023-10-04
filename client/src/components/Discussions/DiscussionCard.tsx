@@ -30,18 +30,14 @@ const DiscussionCard: React.FC<Props> = ({ discussion }) => {
           }}
         >
           <h5 className="card-title">{discussion.topic}</h5>
-          <p
-            className="card-text"
+          <div
             style={{
-              display: "-webkit-box -webkit-box-orient vertical",
+              maxHeight: "150px",
               overflow: "hidden",
-              textOverflow: "ellipsis",
-              WebkitLineClamp: "3",
-              height: "80%",
             }}
           >
-            {discussion.body}
-          </p>
+            <p className="card-text">{discussion.body}</p>
+          </div>
           <p className="card-text">
             <small className="text-muted">By {discussion.author.email}</small>
           </p>
