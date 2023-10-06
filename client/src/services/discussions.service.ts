@@ -11,6 +11,8 @@ export const fetchDiscussions = async () => {
   try {
     const token = checkLocalStorage();
 
+    actions.startLoading();
+
     const response = await fetch(discussionsUrl, {
       method: "GET",
       headers: {
@@ -26,12 +28,16 @@ export const fetchDiscussions = async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     MessageToast.error(e.message);
+  } finally {
+    setTimeout(() => actions.stopLoading(), 500);
   }
 };
 
 export const fetchDiscussion = async (id: string) => {
   try {
     const token = checkLocalStorage();
+
+    actions.startLoading();
 
     const response = await fetch(`${discussionsUrl}/${id}`, {
       method: "GET",
@@ -48,6 +54,8 @@ export const fetchDiscussion = async (id: string) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     MessageToast.error(e.message);
+  } finally {
+    actions.stopLoading();
   }
 };
 
