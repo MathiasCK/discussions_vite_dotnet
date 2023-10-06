@@ -54,3 +54,15 @@ export type Discussion = {
   updated?: string;
   comments?: Array<Comment>;
 };
+
+export type RequestData = {
+  discussion?: Discussion;
+  id?: string;
+};
+
+export enum RequestType {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
