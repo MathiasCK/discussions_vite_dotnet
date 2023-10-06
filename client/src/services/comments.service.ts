@@ -27,7 +27,8 @@ export const createComment = async (comment: Comment) => {
 
     await fetchDiscussion(comment.discussionId);
     actions.setPage(AppPage.Detail);
-    MessageToast.success("Comment creation successful");
+
+    MessageToast.success("Comment successfully created");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     MessageToast.error(e.message);
@@ -56,7 +57,8 @@ export const deleteComment = async (id: string, discussionId: string) => {
     await fetchDiscussion(discussionId);
     actions.removeComment();
     actions.setPage(AppPage.Detail);
-    MessageToast.show("Comment deleted");
+
+    MessageToast.success("Comment successfully deleted");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     MessageToast.error(e.message);

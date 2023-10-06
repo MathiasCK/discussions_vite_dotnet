@@ -13,18 +13,9 @@ export enum AppPage {
   Verify = "verify",
 }
 
-export enum ToastTypes {
-  danger = "danger",
-  success = "success",
-  primary = "primary",
-}
-
 export type AppState = {
   currentPage: AppPage;
   isLoading: boolean;
-  toast: boolean;
-  toastText: string;
-  toastType: ToastTypes;
   user: User | null;
   discussions: Array<Discussion> | [];
   discussion: Discussion | Record<string, never>;

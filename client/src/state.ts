@@ -1,19 +1,9 @@
 import { proxy } from "valtio";
-import {
-  AppPage,
-  AppState,
-  Comment,
-  Discussion,
-  ToastTypes,
-  User,
-} from "./types";
+import { AppPage, AppState, Comment, Discussion, User } from "./types";
 
 const state = proxy<AppState>({
   currentPage: AppPage.Loader,
   isLoading: false,
-  toast: false,
-  toastText: "",
-  toastType: ToastTypes.primary,
   user: null,
   discussions: [],
   discussion: {},
@@ -24,20 +14,6 @@ const state = proxy<AppState>({
 const actions = {
   setPage: (page: AppPage): void => {
     state.currentPage = page;
-  },
-  messageToast: (text: string, type: ToastTypes): void => {
-    state.toastText = text;
-    state.toastType = type;
-    state.toast = true;
-
-    setTimeout(() => {
-      state.toast = false;
-      state.toastText = "";
-    }, 3000);
-  },
-  removeToast: (): void => {
-    state.toast = false;
-    state.toastText = "";
   },
   startLoading: (): void => {
     state.isLoading = true;

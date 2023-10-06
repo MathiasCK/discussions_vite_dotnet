@@ -46,13 +46,13 @@ export const discussionsFetcher = async (
 
       actions.setDiscussion(updatedDiscussion);
       actions.setPage(AppPage.Detail);
-      MessageToast.show("Discussion updated");
+      MessageToast.success("Discussion successfully updated");
       return;
     }
 
     actions.removeDiscussion();
     actions.setPage(AppPage.Discussions);
-    MessageToast.show("Discussion deleted");
+    MessageToast.success("Discussion successfully deleted");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     MessageToast.error(e.message);

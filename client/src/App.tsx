@@ -1,8 +1,9 @@
 import { devtools } from "valtio/utils";
 import { state } from "./state";
 import React from "react";
-import { Loader, Navbar, Popup } from "./components/ui";
+import { Loader, Navbar } from "./components/ui";
 import Pages from "./Pages";
+import { Toaster } from "react-hot-toast";
 
 devtools(state, { name: "app state" });
 const App = () => (
@@ -10,8 +11,8 @@ const App = () => (
     <Loader />
     <Navbar />
     <div className="container">
-      <Popup />
       <main role="main" className="pb-3">
+        <Toaster />
         <Pages />
       </main>
     </div>

@@ -1,14 +1,23 @@
-import { actions } from "../state";
-import { ToastTypes } from "../types";
+import toast from "react-hot-toast";
 
 export class MessageToast {
   static error = (text: string): void => {
-    actions.messageToast(text, ToastTypes.danger);
+    toast.error(text, {
+      style: {
+        background: "#FF6961",
+        color: "#EFEFEF",
+        padding: "1rem",
+      },
+    });
   };
   static success = (text: string): void => {
-    actions.messageToast(text, ToastTypes.success);
-  };
-  static show = (text: string): void => {
-    actions.messageToast(text, ToastTypes.primary);
+    toast.success(text, {
+      icon: "👏",
+      style: {
+        background: "#90EE90",
+        color: "#333333",
+        padding: "1rem",
+      },
+    });
   };
 }
