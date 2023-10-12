@@ -78,7 +78,7 @@ Before you get started, make sure you have the following requirements in place:
    npm run start:dev
    ```
 
-The server will be accessible at http://localhost:5250, and the client will be running on http://localhost:3000.
+The server will be accessible at [http://localhost:5250](http://localhost:5250), and the client will be running on [http://localhost:3000](http://localhost:3000).
 
 ### Production Mode 🌐
 
@@ -94,7 +94,7 @@ The server will be accessible at http://localhost:5250, and the client will be r
    npm start
    ```
 
-The server will be accessible at http://localhost:5250, and the client will be running on http://localhost:3000.
+The server will be accessible at [http://localhost:5250](http://localhost:5250), and the client will be running on [http://localhost:3000](http://localhost:3000).
 
 ## Usage 📖
 
