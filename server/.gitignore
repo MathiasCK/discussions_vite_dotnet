@@ -47,3 +47,5 @@ msbuild.wrn
 *.db-wal
 
 env.config.json
+
+bin/
