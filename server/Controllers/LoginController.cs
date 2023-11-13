@@ -35,9 +35,10 @@ namespace server.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
+          
             var usr = await _loginRepository.FetchOrCreateUser(user.Email);
 
-            if (usr == null)
+            if (usr?.Email == null)
             {
                 return BadRequest("There was an error fetching user " + user.Email);
             }
@@ -68,6 +69,16 @@ namespace server.Controllers
 
         private IActionResult SendEmail(string username, string password, User user)
         {
+
+            if (HttpContext?.Request?.Headers == null)
+            {
+                throw new ArgumentNullException(nameof(HttpContext.Request.Headers));
+            }
+
+            if (username == null || password == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
 
             string clientUrl = HttpContext.Request.Headers["Referer"].ToString();
             var token = GenerateJwtToken(user.Id);
