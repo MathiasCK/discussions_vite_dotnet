@@ -43,7 +43,13 @@ Before you get started, make sure you have the following requirements in place:
    npm run server:init
    ```
 
-5. **Configure client proxy**
+5. **Build server**
+
+   ```bash
+   npm run server:build
+   ```
+
+6. **Configure client proxy**
 
    On the root of the client repo add a file called `.env` and add the credentials:
 
@@ -51,7 +57,7 @@ Before you get started, make sure you have the following requirements in place:
    VITE_SERVER_URL=http://localhost:5250
    ```
 
-6. **Configure smtp server**
+7. **Configure server proxy**
 
    On the root of the server repo add a file called `env.config.json` and add the credentials:
 
@@ -95,6 +101,22 @@ The server will be accessible at [http://localhost:5250](http://localhost:5250),
    ```
 
 The server will be accessible at [http://localhost:5250](http://localhost:5250), and the client will be running on [http://localhost:3000](http://localhost:3000).
+
+## Testing 🧪
+
+1. **Build the server**:
+
+   ```bash
+   npm run server:build
+   ```
+
+2. **Test the server**:
+
+   ```bash
+   npm run server:test
+   ```
+
+Tests for the server are located at `/server/Controllers/Tests`
 
 ## Usage 📖
 

@@ -13,7 +13,8 @@
     "server:dev": "cd server && dotnet run",
     "server": "cd server && dotnet publish -c Release && cd bin/Release/net7.0/publish && dotnet server.dll",
     "server:build": "cd server && dotnet build",
-    "server:init": "cd server && dotnet restore"
+    "server:init": "cd server && dotnet restore",
+    "server:test": "cd server && dotnet test"
   },
   "author": "Mathias Kolberg - Legalit",
   "license": "MIT",
