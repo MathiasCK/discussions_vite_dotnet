@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using server.DAL;
 using server.Models;
 
-namespace Discussions.Controllers
+namespace server.Controllers
 {
     [Authorize]
     [ApiController]
@@ -41,7 +41,7 @@ namespace Discussions.Controllers
 
             if (!deleted)
             {
-                return BadRequest("Could not delete discussion");
+                return BadRequest("Could not delete comment");
             }
 
             return Ok();
