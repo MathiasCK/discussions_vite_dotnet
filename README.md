@@ -16,6 +16,7 @@ Before you get started, make sure you have the following requirements in place:
 
 - [.NET Core SDK](https://dotnet.microsoft.com/download) (v7.0.307) - Verify by running `dotnet --version` ✔️
 - [npm](https://www.npmjs.com/) (v9.8.1) - Verify by running `npm --version` ✔️
+- [node](https://nodejs.org/en) (v17.0.0) - Verify by running `node --version` ✔️
 
 ## Setup ⚙️
 
@@ -31,25 +32,7 @@ Before you get started, make sure you have the following requirements in place:
    cd discussions_vite_dotnet
    ```
 
-3. **Install root & client dependencies**
-
-   ```bash
-   npm install
-   ```
-
-4. **Install server dependencies**
-
-   ```bash
-   npm run server:init
-   ```
-
-5. **Build server**
-
-   ```bash
-   npm run server:build
-   ```
-
-6. **Configure client proxy**
+3. **Configure client proxy**
 
    On the root of the client repo add a file called `.env` and add the credentials:
 
@@ -57,7 +40,7 @@ Before you get started, make sure you have the following requirements in place:
    VITE_SERVER_URL=http://localhost:5250
    ```
 
-7. **Configure server proxy**
+4. **Configure server proxy**
 
    On the root of the server repo add a file called `env.config.json` and add the credentials:
 
@@ -73,6 +56,24 @@ Before you get started, make sure you have the following requirements in place:
    ```
 
    To generate a random SecretToken run `openssl rand -base64 32` from your command line
+
+5. **Install root & client dependencies**
+
+   ```bash
+   npm install
+   ```
+
+6. **Install server dependencies**
+
+   ```bash
+   npm run server:init
+   ```
+
+7. **Build server**
+
+   ```bash
+   npm run server:build
+   ```
 
 ## Running the Project 🚀
 
